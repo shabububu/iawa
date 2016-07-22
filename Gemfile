@@ -46,16 +46,15 @@ group :development do
 end
 
 gem 'sufia', '7.0.0.rc2'
-gem 'pg'
-
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
-
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+
 group :development, :test do
+  gem 'solr_wrapper', '>= 0.3'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 end
+
+gem 'pg'
+gem 'resque-pool'
