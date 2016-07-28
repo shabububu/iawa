@@ -15,6 +15,7 @@
 //= require turbolinks//
 // Required by Blacklight
 //= require blacklight/blacklight
+//= require bootstrap/carousel
 
 //= require_tree .
 //= require sufia
