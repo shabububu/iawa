@@ -1,0 +1,21 @@
+/* VT specific styles */
+@import 'colors';
+
+footer.navbar-inverse {
+  background-color: $hokie-maroon;
+  border-top-color: $hokie-orange;
+  border-bottom-color: $hokie-orange;
+  color: white;
+}
+
+footer.navbar-inverse .navbar-text {
+  color: white;
+}
+
+footer.navbar-inverse .navbar-text a.navbar-link {
+  color: white;
+}
+
+footer.navbar-inverse .navbar-text a.navbar-link:hover {
+  color: $off-white;
+}

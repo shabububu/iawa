@@ -1,0 +1,66 @@
+/* VT specific styles */
+@import 'colors';
+
+#masthead.navbar-inverse {
+  background-color: $hokie-maroon;
+  border-bottom-color: $hokie-orange;
+  height: 165px;
+}
+a#logo.navbar-brand {
+  font-size: 26px;
+  line-height: 26px;
+  color: white;
+}
+
+a#logo.navbar-brand:hover {
+  color: $off-white;
+}
+
+nav.navbar div.row {
+  background-color: $hokie-cream-light;
+}
+
+.row ul.nav li.active a {
+  background-color: $hokie-cream-light-med;
+}
+
+
+/* notifications */
+#top-navbar-collapse ul#user_utility_links li a#notifications-link {
+  color: white;
+}
+
+#top-navbar-collapse ul#user_utility_links li a#notifications-link:hover {
+  color: $off-white;
+}
+
+/* Log in link */
+#top-navbar-collapse ul#user_utility_links li a#login-link {
+  color: white;
+}
+
+#top-navbar-collapse ul#user_utility_links li a#login-link:hover {
+  color: $off-white;
+}
+
+/* Logged in dropdown */
+#top-navbar-collapse ul#user_utility_links li a[role="button"] {
+  color: white;
+}
+
+#top-navbar-collapse ul#user_utility_links li a[role="button"]:hover {
+  color: $off-white;
+}
+
+/* Logged in menu */
+#masthead #top-navbar-collapse ul.nav li.dropdown.open a[role="button"] {
+  background-color: $hokie-off-maroon;
+}
+
+#masthead #top-navbar-collapse ul.nav li.dropdown a[role="button"] {
+  color: white;
+}
+
+#masthead #top-navbar-collapse ul.nav li.dropdown a[role="button"]:hover {
+  color: $off-white;
+}
