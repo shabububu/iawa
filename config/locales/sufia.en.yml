@@ -1,11 +1,28 @@
 en:
   sufia:
-    product_name:       "Sufia"
+    product_name:       "IAWA"
     product_twitter_handle: "@HydraSphere"
     institution_name:   "Institution Name"
 #    institution_name_full:   "The Institution Name"
     account_name:       "My Institution Account Id"
     directory:
       suffix:           "@example.org"
+    search:
+      form:
+        q:
+          label:          "Search IAWA"
+        option:
+          all:
+            label_short: "Search All"
+            label_long:  "All of IAWA"
+          items:
+            label_short:  "All Items"
+            label_long:   "All Items"
+          collections:
+            label_short:  "All Collections"
+            label_long:   "All Collections"
+    homepage:
+      browse_collections: "Browse Collections"
+      browse_works:       "Browse Items"
     footer:
       copyright_html: "<strong>Copyright &copy; 2016 Project Hydra</strong> Licensed under the Apache License, Version 2.0"
