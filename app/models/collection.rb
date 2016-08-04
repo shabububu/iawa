@@ -3,4 +3,8 @@ class Collection < ActiveFedora::Base
   include ::CurationConcerns::CollectionBehavior
   # You can replace these metadata if they're not suitable
   include CurationConcerns::BasicMetadata
+
+  property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder do |index|
+    index.as :stored_searchable
+  end
 end
