@@ -658,6 +658,7 @@ DEPENDENCIES
   fcrepo_wrapper
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails
   pg
   rails (= 4.2.6)
   resque-pool
