@@ -29,6 +29,10 @@ class SolrDocument
 
   use_extension( Hydra::ContentNegotiation )
 
+  def resource_type
+    self[Solrizer.solr_name('resource_type')]
+  end
+
   def bibliographic_citation
     self[Solrizer.solr_name('bibliographic_citation')]
   end
