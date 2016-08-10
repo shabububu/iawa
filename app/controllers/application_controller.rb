@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   include Hydra::Controller::ControllerBehavior
 
   # Adds CurationConcerns behaviors to the application controller.
-  include CurationConcerns::ApplicationControllerBehavior  
-  # Adds Sufia behaviors into the application controller 
+  include CurationConcerns::ApplicationControllerBehavior
+  # Adds Sufia behaviors into the application controller
   include Sufia::Controller
 
   include CurationConcerns::ThemedLayoutController
@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  def new_session_path(scope)
+    new_user_session_path
+  end
 end
