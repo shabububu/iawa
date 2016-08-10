@@ -59,3 +59,5 @@ end
 
 gem 'pg'
 gem 'resque-pool'
+
+gem 'jqcloud-rails'
