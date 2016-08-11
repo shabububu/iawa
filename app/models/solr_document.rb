@@ -29,8 +29,12 @@ class SolrDocument
 
   use_extension( Hydra::ContentNegotiation )
 
-  def resource_type
-    self[Solrizer.solr_name('resource_type')]
+  def coverage
+    self[Solrizer.solr_name('coverage')]
+  end
+
+  def medium
+    self[Solrizer.solr_name('medium')]
   end
 
   def bibliographic_citation
@@ -41,7 +45,4 @@ class SolrDocument
     self[Solrizer.solr_name('rights_holder')]
   end
 
-  def medium
-    self[Solrizer.solr_name('medium')]
-  end
 end

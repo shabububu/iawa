@@ -8,6 +8,6 @@ module CurationConcerns
     include Sufia::WorksControllerBehavior
 
     self.curation_concern_type = Item
-
+    self.show_presenter = ::ItemPresenter
   end
 end
