@@ -273,7 +273,13 @@ module Blacklight::FacetsHelperBehavior
   end
 
   def facet_display_image field, item
-    image_tag "/downloads/#{item.thumbnail_id}?file=thumbnail"
+    case field.downcase
+    when "medium_sim"
+      imgName = item.value.downcase.gsub(/[\s\-]/,'') + '.jpg'
+      image_tag File.join('mediums', imgName)
+    else
+      image_tag File.join("/downloads","#{item.thumbnail_id}?file=thumbnail")
+    end
   end
 
   def facet_image_overlay field, item

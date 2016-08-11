@@ -21,9 +21,28 @@ $carousel-height: 490px;
   }
 }
 
+.carousel-caption-wrapper {
+  width: 100%;
+  margin-left: 0;
+}
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+}
+
+.home_marketing_text {
+  text-align: left;
+  padding: 2em;
+}
+
+.carousel-indicators {
+  bottom: 0;
+  margin-bottom: 5px;
 }
 
 /* Declare heights because of positioning of img element */
