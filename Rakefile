@@ -5,4 +5,8 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-require 'solr_wrapper/rake_task'
+begin
+  require 'solr_wrapper/rake_task'
+rescue LoadError
+  puts 'solr_wrapper is not installed!'
+end
