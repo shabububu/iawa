@@ -2,8 +2,7 @@
   <%
     facet_name = facet_field.key.gsub("_sim","") rescue facet_field.key
     display_facet.items.each do | item |
-      item_record = Item.where(facet_name => item.value).first
-      item[:thumbnail_id] = item_record.thumbnail_id
+      item[:thumbnail_id] = Item.where(facet_name => item.value).first.thumbnail_id rescue nil
     end
   %>
   <% paginator = facet_paginator(facet_field, display_facet) %>
