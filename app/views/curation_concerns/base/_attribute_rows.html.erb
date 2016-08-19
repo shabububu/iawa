@@ -1,12 +1,12 @@
+<%= presenter.attribute_to_html(:tags, render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:creator, render_as: :faceted ) %>
-<%= presenter.attribute_to_html(:subject, render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:source, render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:date_created, render_as: :linked, search_field: 'date_created_tesim' ) %>
 <%= presenter.attribute_to_html(:language, render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim') %>
-<%= presenter.attribute_to_html(:coverage, render_as: :linked) %>
+<%= presenter.attribute_to_html(:part_of, render_as: :linked) %>
 <%= presenter.attribute_to_html(:medium, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:bibligraphic_citation) %>
+<%= presenter.attribute_to_html(:bibliographic_citation) %>
 <%= presenter.attribute_to_html(:rights_holder, render_as: :linked) %>
-<%= presenter.attribute_to_html(:keyword, label: 'Tags', render_as: :faceted ) %>
+<%= presenter.attribute_to_html(:format) %>

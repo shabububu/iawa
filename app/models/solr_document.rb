@@ -45,4 +45,15 @@ class SolrDocument
     self[Solrizer.solr_name('rights_holder')]
   end
 
+  def tags
+    self[Solrizer.solr_name('tags')]
+  end
+
+  def part_of
+    self[Solrizer.solr_name('part_of')]
+  end
+
+  def format
+    self[Solrizer.solr_name('format')]
+  end
 end

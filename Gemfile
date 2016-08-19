@@ -37,6 +37,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Our dev/test gems
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'poltergeist'
+  gem 'phantomjs', '2.1.1', require: 'phantomjs/poltergeist'
+  gem 'coveralls', require: false
 end
 
 group :development do
