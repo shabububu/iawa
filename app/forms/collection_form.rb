@@ -23,18 +23,4 @@ class CollectionForm < CurationConcerns::Forms::CollectionEditForm
      :resource_type]
   end
 
-  def self.multiple?(field)
-    if field.to_sym == :identifier
-      false
-    else
-      super
-    end
-  end
-
-  # cast identifier back to multivalued so it will actually deposit
-  def self.model_attributes(_)
-    attrs = super
-    attrs[:identifier] = Array(attrs[:identifier]) if attrs[:identifier]
-    attrs
-  end
 end

@@ -12,25 +12,25 @@ describe Item do
     before { subject.rights = nil }
     it "ensures the item has a right" do
       expect(subject).not_to be_valid
-      expect(subject.errors.messages[:rights]).to eq(["Your item must have a right."])
+      expect(subject.errors.messages[:rights]).to eq("Your item must have the rights.")
     end
 
     before { subject.identifier = nil }
     it "ensures the item has an identifier" do
       expect(subject).not_to be_valid
-      expect(subject.errors.messages[:identifier]).to eq(["Your item must have an identifier."])
+      expect(subject.errors.messages[:identifier]).to eq("Your item must have an identifier.")
     end
 
     before { subject.rights_holder = nil }
     it "ensures the item has a rights holder" do
       expect(subject).not_to be_valid
-      expect(subject.errors.messages[:rights_holder]).to eq(["Your item must have a rights holder."])
+      expect(subject.errors.messages[:rights_holder]).to eq("Your item must have a rights holder.")
     end
   end
 
   describe ".properties" do
     subject { described_class.properties.keys }
-    it { is_expected.to include("subject", "part_of", 
+    it { is_expected.to include("coverage", "part_of", 
       "identifier", "medium", "rights_holder", "tags", "format") }
   end
 
@@ -41,16 +41,16 @@ describe Item do
       expect(subject.part_of).to eq ['foo', 'bar']
     end
     it "has dc identifier properties" do
-      subject.identifier = ['foo']
-      expect(subject.identifier).to eq ['foo']
+      subject.identifier = 'foo'
+      expect(subject.identifier).to eq 'foo'
     end
     it "has dc medium properties" do
       subject.medium = ['foo', 'bar']
       expect(subject.medium).to eq ['foo', 'bar']
     end
     it "has dc rights holder properties" do
-      subject.rights_holder = ['foo', 'bar']
-      expect(subject.rights_holder).to eq ['foo', 'bar']
+      subject.rights_holder = 'foo'
+      expect(subject.rights_holder).to eq 'foo'
     end
     it "has dc tags properties" do
       subject.tags = ['foo', 'bar']
@@ -73,6 +73,7 @@ describe Item do
       expect(subject).to respond_to(:language)
       expect(subject).to respond_to(:resource_type)
       expect(subject).to respond_to(:identifier)
+      expect(subject).to respond_to(:coverage)
       expect(subject).to respond_to(:part_of)
       expect(subject).to respond_to(:medium)
       expect(subject).to respond_to(:bibliographic_citation)

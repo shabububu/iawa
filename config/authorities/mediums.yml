@@ -1,15 +1,27 @@
 terms:
+  - id: Blueprints
+    term: Blueprints
+  - id: Charcoal
+    term: Charcoal
+  - id: Color pencil
+    term: Color pencil
+  - id: Computer-aided design
+    term: Computer-aided design
   - id: Graphite
     term: Graphite
   - id: Ink
     term: Ink
   - id: Marker pen
     term: Marker pen
-  - id: Photographic print - Color
-    term: Photographic print - Color
+  - id: Linocuts (prints)
+    term: Linocuts (prints)
   - id: Photographic Print - Black and White
     term: Photographic Print - Black and White
+  - id: Photographic print - Color
+    term: Photographic print - Color
   - id: Printed ink
     term: Printed ink
   - id: Watercolors
     term: Watercolors
+  - id: Woodcut (prints)
+    term: Woodcut (prints)
