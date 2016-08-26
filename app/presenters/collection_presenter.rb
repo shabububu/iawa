@@ -4,7 +4,8 @@ class CollectionPresenter < Sufia::CollectionPresenter
   # Terms is the list of fields displayed by app/views/collections/_show_descriptions.html.erb
   def self.terms
     [:title, :description, :creator, :source, :date_created, 
-     :rights, :language, :identifier, :bibliographic_citation, :rights_holder]
+     :rights, :language, :identifier, :bibliographic_citation,
+     :rights_holder, :coverage, :subject]
   end
 end
 
