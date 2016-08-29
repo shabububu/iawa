@@ -31,11 +31,11 @@
 }
 
 .iviewer_cursor {
-    cursor: image-url("zoom/hand.cur") 6 8, pointer;
+    cursor: image_url("zoom/hand.cur") 6 8, pointer;
 }
 
 .iviewer_drag_cursor {
-    cursor: image-url("zoom/grab.cur") 6 8, pointer;
+    cursor: image_url("zoom/grab.cur") 6 8, pointer;
 }
 
 .iviewer_button {
@@ -47,22 +47,22 @@
 
 .iviewer_zoom_in {
     left: 20px;
-    background: image-url("zoom/iviewer.zoom_in.gif") center center no-repeat;
+    background: image_url("zoom/iviewer.zoom_in.gif") center center no-repeat;
 }
 
 .iviewer_zoom_out {
     left: 55px;
-    background: image-url("zoom/iviewer.zoom_out.gif") center center no-repeat;
+    background: image_url("zoom/iviewer.zoom_out.gif") center center no-repeat;
 }
 
 .iviewer_zoom_zero {
     left: 90px;
-    background: image-url("zoom/iviewer.zoom_zero.gif") center center no-repeat;
+    background: image_url("zoom/iviewer.zoom_zero.gif") center center no-repeat;
 }
 
 .iviewer_zoom_fit {
     left: 125px;
-    background: image-url("zoom/iviewer.zoom_fit.gif") center center no-repeat;
+    background: image_url("zoom/iviewer.zoom_fit.gif") center center no-repeat;
 }
 
 .iviewer_zoom_status {
@@ -76,11 +76,11 @@
 
 .iviewer_rotate_left {
     left: 227px;
-    background: #fff image-url("zoom/iviewer.rotate_left.png") center center no-repeat;
+    background: #fff image_url("zoom/iviewer.rotate_counter.png") center center no-repeat;
 }
 
 .iviewer_rotate_right {
     left: 262px;
-    background: #fff image-url("zoom/iviewer.rotate_right.png") center center no-repeat;
+    background: #fff image_url("zoom/iviewer.rotate_clockwise.png") center center no-repeat;
 
 }
