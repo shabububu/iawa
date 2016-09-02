@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work Item`
 class Item < ActiveFedora::Base
   include ::CurationConcerns::WorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include Iawa::Metadata
   include Sufia::WorkBehavior
   self.human_readable_type = 'Item'
   # Change this to restrict which works can be added as a child.
@@ -15,11 +15,8 @@ class Item < ActiveFedora::Base
   property :medium, predicate: ::RDF::Vocab::DC.medium do |index|
     index.as :stored_searchable, :facetable
   end
-  property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder do |index|
-    index.as :stored_searchable
-  end
   property :tags, predicate: ::RDF::Vocab::DC11.subject do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
   property :format, predicate: ::RDF::Vocab::DC11.format do |index|
     index.as :stored_searchable

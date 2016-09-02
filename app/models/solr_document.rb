@@ -32,7 +32,10 @@ class SolrDocument
   def coverage
     self[Solrizer.solr_name('coverage')]
   end
-
+  
+  def rights
+    first(Solrizer.solr_name('rights'))
+  end
   def medium
     self[Solrizer.solr_name('medium')]
   end

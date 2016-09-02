@@ -1,41 +1,67 @@
 terms:
+  - id: Architectural drawings (visual works)
+    term: Architectural drawings (visual works)
+  - id: Architectural models
+    term: Architectural models
   - id: Articles
     term: Articles
+  - id: As-built drawings
+    term: As-built drawings
+  - id: Axonometric projections (images)
+    term: Axonometric projections (images)
   - id: Clippings
     term: Clippings
+  - id: Conceptual drawings
+    term: Conceptual drawings
   - id: Correspondence
     term: Correspondence
+  - id: Curriculum Vitae
+    term: Curriculum Vitae
+  - id: Computer drawings
+    term: Computer drawings
+  - id: Detail drawings (drawings)
+    term: Detail drawings (drawings)
+  - id: Detail studies
+    term: Detail studies
+  - id: Digital 3D model
+    term: Digital 3D model
+  - id: Digital renderings
+    term: Digital renderings 
   - id: Documents
     term: Documents
-  - id: Drawings - Axonometric
-    term: Drawings - Axonometric
-  - id: Drawings - Concept
-    term: Drawings - Concept
-  - id: Drawings - Details
-    term: Drawings - Details
-  - id: Drawings - Elevation
-    term: Drawings - Elevation
-  - id: Drawings - Floor plans
-    term: Drawings - Floor plans
-  - id: Drawings - Interior
-    term: Drawings - Interior
-  - id: Drawings - Perspective
-    term: Drawings - Perspective
-  - id: Drawings - Presentation
-    term: Drawings - Presentation
-  - id: Drawings - Section
-    term: Drawings - Section
-  - id: Drawings - Site plans
-    term: Drawings - Site plans
+  - id: Elevations (orthographic projections)
+    term: Elevations (orthographic projections)
+  - id: Floor plans (orthographic projections)
+    term: Floor plans (orthographic projections)
+  - id: Interior design
+    term: Interior design
+  - id: Letters
+    term: Letters
+  - id: Newsletters
+    term: Newsletters
   - id: Notebooks
     term: Notebooks
+  - id: Pamphlets
+    term: Pamphlets
+  - id: Perspective views (images)
+    term: Perspective views (images)
   - id: Photographs
     term: Photographs
   - id: Postcards
     term: Postcards
+  - id: Posters
+    term: Posters
+  - id: Presentation drawings (proposals)
+    term: Presentation drawings (proposals)
+  - id: Scale models
+    term: Scale models
+  - id: Sections (orthographic projections)
+    term: Sections (orthographic projections)
   - id: Sketchbooks
     term: Sketchbooks
   - id: Sketches
     term: Sketches
+  - id: Site plans
+    term: Site plans
   - id: Travel sketches
     term: Travel sketches
