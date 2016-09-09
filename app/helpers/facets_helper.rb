@@ -53,14 +53,21 @@ module FacetsHelper
   def facet_display_image field, item
     case field.downcase
     when "medium_sim"
-      imgName = item.value.downcase.gsub(/[\s\-]/,'') + '.jpg'
+      imgName = get_image_name(item)
       image_tag File.join('mediums', imgName)
+    when "resource_type_sim"
+      imgName = get_image_name(item)
+      image_tag File.join('types', imgName)      
     when "creator_sim"
       imgName = item.value.split(',')[0] + '_Portrait.jpg'
       image_tag File.join('creators', imgName)
     else
       image_tag File.join("/downloads","#{item.thumbnail_id}?file=thumbnail")
     end
+  end
+
+  def get_image_name item
+    item.value.downcase.gsub(/[\W_]/,'') + '.jpg'
   end
 
   def facet_image_overlay item
