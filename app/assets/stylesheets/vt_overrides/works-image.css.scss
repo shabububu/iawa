@@ -1,16 +1,24 @@
 @import 'colors';
 
-#img-large-wrapper {
+#img-fallback, #img-large-wrapper {
   position: relative;
   display: block;
   width: 70%;
-  height: 500px;
   margin-left: 15%;
   margin-right: 15%;
   background-color: $hokie-cream-light-med;
   -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
   -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
+}
+#img-fallback {
+  height: 500px;
+  img {
+    position: relative;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+  }
 }
 
 .viewer {
