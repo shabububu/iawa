@@ -40,30 +40,45 @@ module FacetsHelper
         link_to_unless(options[:suppress_link], facet_display_value(facet_field, item), path, :class=>"facet_select")
       end + render_facet_count(item.hits)
     else
-      content_tag(:span, :class => "item-entry") do
-        link_to_unless(options[:suppress_link], facet_image_content(facet_field, item), path, :class=>"facet_select")
+      content = facet_image_content(facet_field, item)
+      if !content.blank?
+        content_tag(:span, :class => "item-entry") do
+          link_to_unless(options[:suppress_link], content, path, :class=>"facet_select")
+        end
       end
     end
   end
 
   def facet_image_content field, item
-    facet_display_image(field, item) + facet_image_overlay(item)
+    facet_image = facet_display_image(field, item) 
+    facet_overlay = facet_image_overlay(item)
+    image_content = ""
+    if !facet_image.blank? && !facet_overlay.blank?
+      image_content = facet_image + facet_overlay
+    end
+    return image_content
   end
 
   def facet_display_image field, item
     case field.downcase
     when "medium_sim"
       imgName = get_image_name(item)
-      image_tag File.join('mediums', imgName)
+      image_exists?("mediums",imgName) ? image_tag(File.join('mediums', imgName)) : ""
     when "resource_type_sim"
       imgName = get_image_name(item)
-      image_tag File.join('types', imgName)      
+      image_exists?("types",imgName) ? image_tag(File.join('types', imgName)) : ""      
     when "creator_sim"
       imgName = item.value.split(',')[0] + '_Portrait.jpg'
-      image_tag File.join('creators', imgName)
+      image_exists?("creators", imgName) ? image_tag(File.join('creators', imgName)) : ""
     else
       image_tag File.join("/downloads","#{item.thumbnail_id}?file=thumbnail")
     end
+  end
+
+  def image_exists? dir, filename
+    imagesPath = File.join(Rails.root.to_s, "app/assets/images")
+    filePath = File.join(imagesPath, dir, filename)
+    return File.file? filePath
   end
 
   def get_image_name item
