@@ -1,0 +1,19 @@
+<%= render 'shared/citations' %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div id="image-wrapper">
+        <%= image_tag "/downloads/#{@presenter.solr_document.id}", id: "file-image" %> 
+      </div>
+      <%= render 'show_actions', presenter: @presenter %>
+    </div>
+    <div itemscope itemtype="<%= @presenter.itemtype %>" class="col-xs-12 col-sm-8">
+      <header>
+        <%= render 'work_title', presenter: @presenter %>
+      </header>
+
+      <%# TODO: render 'show_descriptions' See https://github.com/projecthydra/sufia/issues/1481 %>
+    </div><!-- /columns second -->
+  </div> <!-- /.row -->
+</div><!-- /.container-fluid -->
