@@ -67,6 +67,7 @@ en:
         header: Save Items
       files:
         instructions: Each file will be uploaded to a separate new item resulting in one item per uploaded file.
+    collection:
       actions:
         add_works:
           label: "Add items"
