@@ -1,5 +1,2 @@
-<%= f.input :rights,
-    input_html: { 
-      value: "Permission to publish material from the " + f.object.title.first + " - must be obtained from University Libraries Special Collections, Virginia Tech."
-    },
-    required: true %>
+<input id="is_new_work" type="hidden" value="<%= f.object["identifier"] == "" %>"/>
+<%= f.input :rights, required: true %>

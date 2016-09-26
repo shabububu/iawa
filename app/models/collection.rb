@@ -6,4 +6,15 @@ class Collection < ActiveFedora::Base
   validates :rights, presence: { message: 'Your collection must have a right.' }
   validates :identifier, presence: { message: 'Your collection must have an identifier.' }
   validates :rights_holder, presence: { message: 'Your collection must have a rights holder.' }
+
+  def add_members(new_member_ids)
+    return if new_member_ids.nil? || new_member_ids.empty?
+    curation_concerns = ActiveFedora::Base.find(new_member_ids)
+    curation_concerns.each do |item|
+      item.rights = self.rights
+      item.bibliographic_citation = self.bibliographic_citation
+      item.save
+    end
+    members << curation_concerns
+  end
 end
