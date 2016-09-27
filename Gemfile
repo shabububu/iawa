@@ -69,4 +69,3 @@ end
 gem 'pg'
 gem 'resque-pool'
 gem 'jqcloud-rails'
-gem 'omniauth-cas'

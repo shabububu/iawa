@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
   include Sufia::UserUsageStats
 
   if Blacklight::Utils.needs_attr_accessible?
-    attr_accessible :email
+    attr_accessible :email, :password, :password_confirmation
   end
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :trackable, :omniauthable, omniauth_providers: [:cas]
+  devise :trackable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   def self.from_cas(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

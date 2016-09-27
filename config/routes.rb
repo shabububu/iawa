@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  get 'users/auth/cas', to: 'users/omniauth_callbacks#passthru', as: 'new_user_session'
-  devise_scope :user do
-    get 'sign_in', to: redirect('users/auth/cas')
-    get 'sign_out', to: 'devise/sessions#destroy', as: 'destroy_user_session'
-  end
+  devise_for :users#, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  #get 'users/auth/cas', to: 'users/omniauth_callbacks#passthru', as: 'new_user_session'
+  #devise_scope :user do
+  #  get 'sign_in', to: redirect('users/auth/cas')
+  #  get 'sign_out', to: 'devise/sessions#destroy', as: 'destroy_user_session'
+  #end
 
   mount CurationConcerns::Engine, at: '/'
   resources :welcome, only: 'index'
