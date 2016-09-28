@@ -49,3 +49,6 @@ config/application.yml
 
 # Ignore photos for carousel, owned/managed by UniRel.
 /app/assets/images/carousel
+
+# Ignore compiled assets
+/public/assets
