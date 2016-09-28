@@ -23,3 +23,4 @@
 //= require sufia
 
 //= require jqcloud
+//= require iawa/auto_fill_name

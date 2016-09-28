@@ -70,7 +70,7 @@ en:
     collection:
       actions:
         add_works:
-          label: "Add items"
+          label: "Add Items"
           desc: "Add items to this Collection"
     footer:
       copyright_html: "<strong>Copyright &copy; 2016 Project Hydra</strong> <br/>Licensed under the Apache License, Version 2.0"          
