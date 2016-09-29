@@ -9,7 +9,7 @@ module CurationConcerns
         def apply_save_data_to_curation_concern(attributes)
           remove_blank_attributes!(attributes)
           attributes.delete(:remote_files) unless curation_concern.attributes[:remote_files]
-          attributes.delete(:uploaded_files) unless curation_concern.attributes[:remote_files]
+          attributes.delete(:uploaded_files) unless curation_concern.attributes[:uploaded_files]
           curation_concern.attributes = attributes.symbolize_keys
           curation_concern.date_modified = CurationConcerns::TimeService.time_in_utc
           # update rights and bibliographic_citation using the collection's title
