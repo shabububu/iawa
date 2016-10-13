@@ -1,15 +1,15 @@
 module TagsService
   mattr_accessor :authority
-  self.authority = Qa::Authorities::Local.subauthority_for('tags')
+  self.authority = ControlledVocab.where(field: 'tags_sim')
 
   def self.select_all_options
     authority.all.map do |element|
-      [element[:label], element[:id]]
+      [element[:name], element[:name]]
     end
   end
 
   def self.label(id)
-    authority.find(id).fetch('term')
+    authority.find(id).fetch('name')
   end
 end
 

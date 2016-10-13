@@ -60,18 +60,11 @@ module FacetsHelper
   end
 
   def facet_display_image field, item
-    case field.downcase
-    when "medium_sim"
-      imgName = get_image_name(item)
-      image_exists?("mediums",imgName) ? image_tag(File.join('mediums', imgName)) : ""
-    when "resource_type_sim"
-      imgName = get_image_name(item)
-      image_exists?("types",imgName) ? image_tag(File.join('types', imgName)) : ""      
-    when "creator_sim"
+    if field.downcase == "creator_sim"
       imgName = item.value.split(',')[0] + '_Portrait.jpg'
-      image_exists?("creators", imgName) ? image_tag(File.join('creators', imgName)) : ""
+      image_exists?("creator", imgName) ? image_tag(File.join('creator', imgName)) : ""
     else
-      image_tag File.join("/downloads","#{item.thumbnail_id}?file=thumbnail")
+      image_exists?(item.field_name, item.image_filename) ? image_tag(File.join(item.field_name, item.image_filename)) : ""
     end
   end
 

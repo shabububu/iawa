@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :controlled_vocabs
   get 'collections/:id/update_rights', to: 'collections#update_rights', as: 'update_rights_collection'
   Hydra::BatchEdit.add_routes(self)
   mount Qa::Engine => '/authorities'
