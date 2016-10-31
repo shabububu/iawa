@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810003737) do
+ActiveRecord::Schema.define(version: 20160930155243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(version: 20160810003737) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "external_key"
+  end
+
+  create_table "controlled_vocabs", force: :cascade do |t|
+    t.string   "field",          null: false
+    t.string   "name",           null: false
+    t.string   "image_filename"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "curation_concerns_operations", force: :cascade do |t|

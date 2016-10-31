@@ -1,8 +1,9 @@
 <ul class="facet-values list-unstyled">
   <%
-    facet_name = facet_field.key.gsub("_sim","") rescue facet_field.key
+    field_name = facet_field.key.gsub("_sim", "") rescue facet_field.key
     display_facet.items.each do | item |
-      item[:thumbnail_id] = Item.where(facet_name => item.value).first.thumbnail_id rescue nil
+      item[:field_name] = field_name
+      item[:image_filename] = ControlledVocab.where(field: facet_field.key, name: item.value).first.image_filename rescue nil
     end
   %>
   <% paginator = facet_paginator(facet_field, display_facet) %>

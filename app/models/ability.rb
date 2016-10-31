@@ -16,8 +16,8 @@ class Ability
 
     # Limits creating new objects to a specific group
     #
-    # if user_groups.include? 'special_group'
-    #   can [:create], ActiveFedora::Base
-    # end
+    if user_groups.include? 'archivist'
+      can [:manage], ControlledVocab
+    end
   end
 end
