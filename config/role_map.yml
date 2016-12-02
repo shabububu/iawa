@@ -22,3 +22,9 @@ test:
 production:
   archivist:
     - specref@vt.edu
+    - whunter@vt.edu
+    - virjtt03@vt.edu
+    - kdweeks@vt.edu
+    - aserra@vt.edu
+    - samw@vt.edu
+
