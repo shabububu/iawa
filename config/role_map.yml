@@ -1,6 +1,8 @@
 development:
   archivist:
     - archivist1@example.com
+    - whunter@vt.edu
+    - virjtt03@vt.edu
 
 test:
   archivist:

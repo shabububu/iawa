@@ -33,6 +33,10 @@ en:
       works:
         menu: "Items"
         my: "My Items"
+      controlled_vocabs:
+        menu: "Vocabularies"
+        my: "My Controlled Vocabularies"
+        new: "New Controlled Vocabulary"
     dashboard:
       view_works:               "View Items"
       create_work:              "Create Item"
