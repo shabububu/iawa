@@ -58,8 +58,8 @@
           <span class="fa fa-cubes"></span> <%= t("sufia.toolbar.controlled_vocabs.menu") %> <span class="caret"></span>
         <% end %>
         <ul class="dropdown-menu">
-          <li><%= link_to t("sufia.toolbar.controlled_vocabs.my"), controlled_vocabs_path %></li>
-          <li><%= link_to t("sufia.toolbar.controlled_vocabs.new"), new_controlled_vocab_path %></li>
+          <li><%= link_to t("sufia.toolbar.controlled_vocabs.my"), main_app.controlled_vocabs_path %></li>
+          <li><%= link_to t("sufia.toolbar.controlled_vocabs.new"), main_app.new_controlled_vocab_path %></li>
         </ul>
       </li>
     <% end %>
