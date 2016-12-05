@@ -69,9 +69,13 @@ module FacetsHelper
   end
 
   def image_exists? dir, filename
+    exists = false
     imagesPath = File.join(Rails.root.to_s, "app/assets/images")
-    filePath = File.join(imagesPath, dir, filename)
-    return File.file? filePath
+    if !dir.blank? && !filename.blank?
+      filePath = File.join(imagesPath, dir, filename)
+      exists = File.file? filePath
+    end
+    return exists
   end
 
   def get_image_name item
