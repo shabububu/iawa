@@ -53,8 +53,7 @@ class BatchImport
         when 'Digital Object ID'
           itemHash['identifier'] = field
         when 'Date'
-          key = 'date_created'
-          itemHash[key] = pushToArray(field)
+          itemHash['date'] = field
         when 'Type'
           key = 'resource_type'
           itemHash[key] = pushToArray(field)

@@ -4,11 +4,12 @@ class CollectionForm < CurationConcerns::Forms::CollectionEditForm
   # TODO: remove this when https://github.com/projecthydra/hydra-editor/pull/115
   # is merged and hydra-editor 3.0.0 is released
   delegate :model_name, to: :model
-  self.terms += [:source, :bibliographic_citation, :rights_holder, :coverage]
+  self.terms += [:date, :source, :bibliographic_citation, :rights_holder, :coverage]
+  self.terms -= [:date_created]
   self.required_fields = [:title, :rights, :identifier, :rights_holder]
 
   def primary_terms
-    [:title, :description, :creator, :source, :date_created, :rights,
+    [:title, :description, :creator, :source, :date, :rights,
      :language, :identifier, :bibliographic_citation, :rights_holder,
      :coverage, :subject]
   end
