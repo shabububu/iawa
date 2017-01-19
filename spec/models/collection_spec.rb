@@ -51,7 +51,7 @@ describe Collection do
       expect(subject).to respond_to(:description)
       expect(subject).to respond_to(:creator)
       expect(subject).to respond_to(:source)
-      expect(subject).to respond_to(:date_created)
+      expect(subject).to respond_to(:date)
       expect(subject).to respond_to(:rights)
       expect(subject).to respond_to(:language)
       expect(subject).to respond_to(:identifier)

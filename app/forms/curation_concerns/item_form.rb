@@ -3,13 +3,13 @@
 module CurationConcerns
   class ItemForm < Sufia::Forms::WorkForm
     self.model_class = ::Item
-    self.terms += [:tags, :resource_type, :coverage, :part_of, :medium,
+    self.terms += [:tags, :resource_type, :date, :coverage, :part_of, :medium,
                    :bibliographic_citation, :rights_holder, :format]
-
+    self.terms -= [:date_created]
     self.required_fields = [:title, :rights, :identifier, :rights_holder]
 
     def primary_terms
-      [:title, :tags, :description, :creator, :source, :date_created,
+      [:title, :tags, :description, :creator, :source, :date,
       :rights, :language, :resource_type, :identifier, :coverage, :part_of,
       :medium, :bibliographic_citation, :rights_holder, :format]
     end

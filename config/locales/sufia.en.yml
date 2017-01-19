@@ -94,7 +94,7 @@ en:
         related_url: "A link to a website or other specific content (audio, video, PDF document) related to the item. An example is the URL of a research project from which the item was derived."
         based_near_html: "A place name related to the item, such as its site of publication, or the city, state, or country the item contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>."
         contributor_html: "A person or group you want to recognize for playing a role in the creation of the item, but not the primary role."
-        date_created: "The date on which the item was generated."
+        date: "The date on which the item was generated."
         description: "Free-text notes about the item. Examples include abstracts of a paper or citation information for a journal article."
         identifier: "A unique handle identifying the item. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book."
         language: "The language of the item's content."

@@ -8,8 +8,6 @@ class SolrDocument
   # Adds Sufia behaviors to the SolrDocument.
   include Sufia::SolrDocumentBehavior
 
-
-
   # self.unique_key = 'id'
 
   # Email uses the semantic field mappings below to generate the body of an email.
@@ -36,6 +34,11 @@ class SolrDocument
   def rights
     first(Solrizer.solr_name('rights'))
   end
+
+  def date
+    first(Solrizer.solr_name('date'))
+  end
+
   def medium
     self[Solrizer.solr_name('medium')]
   end

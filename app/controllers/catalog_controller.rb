@@ -16,6 +16,10 @@ class CatalogController < ApplicationController
     solr_name('system_modified', :stored_sortable, type: :date)
   end
 
+  def self.date_field
+    solr_name('date', :stored_sortable)
+  end
+
   configure_blacklight do |config|
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
@@ -84,7 +88,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("publisher", :stored_searchable), label: "Publisher", itemprop: 'publisher', link_to_search: solr_name("publisher", :facetable)
     config.add_index_field solr_name("based_near", :stored_searchable), label: "Location", itemprop: 'contentLocation', link_to_search: solr_name("based_near", :facetable)
     config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
-    config.add_index_field solr_name("date_created", :stored_searchable), label: "Date Created", itemprop: 'dateCreated'
+    config.add_index_field solr_name("date", :stored_searchable), label: "Date", itemprop: 'date'
     config.add_index_field solr_name("resource_type", :stored_searchable), label: "Type", link_to_search: solr_name("resource_type", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), label: "File Format", link_to_search: solr_name("file_format", :facetable)
     config.add_index_field solr_name("identifier", :stored_searchable), label: "Identifier", helper_method: :index_field_link, field_name: 'identifier'
@@ -102,7 +106,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("language", :stored_searchable), label: "Language"
     config.add_show_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded"
     config.add_show_field solr_name("date_modified", :stored_searchable), label: "Date Modified"
-    config.add_show_field solr_name("date_created", :stored_searchable), label: "Date Created"
+    config.add_show_field solr_name("date", :stored_searchable), label: "Date"
     config.add_show_field solr_name("rights", type: :string), label: "Rights"
     config.add_show_field solr_name("rights_holder", :symbol), label: "Rights Holder"
     config.add_show_field solr_name("bibliographic_citation", :symbol), label: "Bibliographic Citation"
@@ -277,11 +281,10 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
-    config.add_sort_field "score desc, #{uploaded_field} desc", label: "relevance"
-    config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
-    config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
-    config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
-    config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
+    # unicode 25B2 for black up-pointing triangle (asc)
+    # unicode 25BC for black down-pointing triangle (dec)
+    config.add_sort_field "#{date_field} desc", label: "Date \u25BC"
+    config.add_sort_field "#{date_field} asc", label: "Date \u25B2"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
