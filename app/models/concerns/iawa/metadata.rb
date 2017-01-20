@@ -12,7 +12,7 @@ module Iawa
       end
 
       property :part_of, predicate: ::RDF::Vocab::DC.isPartOf
-      property :resource_type, predicate: ::RDF::Vocab::DC.type do |index|
+      property :resource_type, predicate: ::RDF::Vocab::DC11.type do |index|
         index.as :stored_searchable, :facetable
       end
       property :creator, predicate: ::RDF::Vocab::DC11.creator do |index|
@@ -28,7 +28,7 @@ module Iawa
       property :keyword, predicate: ::RDF::Vocab::DC11.relation do |index|
         index.as :stored_searchable, :facetable
       end
-      property :rights, predicate: ::RDF::Vocab::DC.rights, multiple: false do |index|
+      property :rights, predicate: ::RDF::Vocab::DC11.rights, multiple: false do |index|
         index.as :stored_searchable
       end
       property :publisher, predicate: ::RDF::Vocab::DC11.publisher do |index|
@@ -37,13 +37,13 @@ module Iawa
       property :date, predicate: ::RDF::Vocab::DC11.date, multiple: false do |index|
         index.as :stored_searchable, :stored_sortable
       end
-      property :subject, predicate: ::RDF::Vocab::DC.subject do |index|
+      property :subject, predicate: ::RDF::Vocab::DC11.subject do |index|
         index.as :stored_searchable, :facetable
       end
       property :language, predicate: ::RDF::Vocab::DC11.language do |index|
         index.as :stored_searchable, :facetable
       end
-      property :identifier, predicate: ::RDF::Vocab::DC.identifier, multiple: false  do |index|
+      property :identifier, predicate: ::RDF::Vocab::DC11.identifier, multiple: false  do |index|
         index.as :stored_searchable
       end
       property :based_near, predicate: ::RDF::Vocab::FOAF.based_near do |index|
@@ -59,7 +59,7 @@ module Iawa
       property :coverage, predicate: ::RDF::Vocab::DC11.coverage do |index|
         index.as :stored_searchable, :facetable
       end
-      property :source, predicate: ::RDF::Vocab::DC.source do |index|
+      property :source, predicate: ::RDF::Vocab::DC11.source do |index|
         index.as :stored_searchable
       end
 
