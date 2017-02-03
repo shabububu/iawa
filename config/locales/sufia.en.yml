@@ -36,7 +36,7 @@ en:
         batch_import: "Batch Import"
       controlled_vocabs:
         menu: "Vocabularies"
-        my: "My Controlled Vocabularies"
+        list: "Controlled Vocabularies"
         new: "New Controlled Vocabulary"
     dashboard:
       view_works:               "View Items"
