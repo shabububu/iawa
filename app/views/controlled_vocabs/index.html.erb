@@ -18,9 +18,11 @@
         <td><%= controlled_vocab.field %></td>
         <td><%= controlled_vocab.name %></td>
         <td><%= controlled_vocab.image_filename %></td>
-        <td><%= link_to 'Show', controlled_vocab %></td>
-        <td><%= link_to 'Edit', edit_controlled_vocab_path(controlled_vocab) %></td>
-        <td><%= link_to 'Destroy', controlled_vocab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="actions">
+          <%= link_to 'Show', controlled_vocab %>
+          <%= link_to 'Edit', edit_controlled_vocab_path(controlled_vocab) %>
+          <%= link_to 'Destroy', controlled_vocab, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
