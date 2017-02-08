@@ -24,28 +24,36 @@ namespace :iawa do
                     "Photographic Print - Black and White", "Photographic print - Color",
 		    "Printed ink", "Watercolors", "Woodcut (prints)"]
     medium_names.each do |name|
-      ControlledVocab.create!(field: 'medium_sim', name: name, image_filename: name.downcase.gsub(/[\W_]/,'') + '.jpg')
+      ControlledVocab.find_or_create_by(name: name) do |c_v|
+        c_v.field = 'medium_sim'
+        c_v.image_filename = name.downcase.gsub(/[\W_]/,'') + '.jpg'
+      end
     end
     type_names = ["Articles", "Clippings", "Correspondence", "Curriculum Vitae",
-		  "Digital 3D model", "Computer drawings", "Digital renderings",
-		  "Documents", "Architectural drawings (visual works)", "As-built drawings",
-		  "Axonometric projections (images)", "Conceptual drawings",
+                  "Digital 3D model", "Computer drawings", "Digital renderings",
+                  "Documents", "Architectural drawings (visual works)", "As-built drawings",
+                  "Axonometric projections (images)", "Conceptual drawings",
                   "Detail drawings (drawings)", "Detail studies", "Elevations (orthographic projections)",
-		  "Floor plans (orthographic projections)", "Interior design",
-		  "Perspective views (images)", "Presentation drawings (proposals)",
-		  "Sections (orthographic projections)", "Site plans", "Letters",
-		  "Newsletters", "Notebooks", "Pamphlets", "Photographs", "Architectural models",
-		  "Postcards", "Posters", "Scale models", "Sketchbooks", "Sketches", "Travel sketches"]
+                  "Floor plans (orthographic projections)", "Interior design",
+                  "Perspective views (images)", "Presentation drawings (proposals)",
+                  "Sections (orthographic projections)", "Site plans", "Letters",
+                  "Newsletters", "Notebooks", "Pamphlets", "Photographs", "Architectural models",
+                  "Postcards", "Posters", "Scale models", "Sketchbooks", "Sketches", "Travel sketches"]
     type_names.each do |name|
-      ControlledVocab.create!(field: 'resource_type_sim', name: name, image_filename: name.downcase.gsub(/[\W_]/,'') + '.jpg')
+      ControlledVocab.find_or_create_by(name: name) do |c_v|
+        c_v.field = 'resource_type_sim'
+        c_v.image_filename = name.downcase.gsub(/[\W_]/,'') + '.jpg'
+      end
     end
     tags_names = ["single-story", "two-story", "3 to 5 stories", "6 to 10 stories", "11 to 20 stories",
-		  "Commercial and Office", "Educational and research", "Healthcare", "Industrial",
-		  "Interior Design", "Landscape Architecture", "Portrait", "Residential",
-		  "Residential-Housing development", "Residential-Multi-family", "Residential-Single-family",
-		  "Single-family", "Urban Design", "Student projects"]
+                  "Commercial and Office", "Educational and research", "Healthcare", "Industrial",
+                  "Interior Design", "Landscape Architecture", "Portrait", "Residential",
+                  "Residential-Housing development", "Residential-Multi-family", "Residential-Single-family",
+                  "Single-family", "Urban Design", "Student projects"]
     tags_names.each do |name|
-      ControlledVocab.create!(field: 'tags_sim', name: name)
+      ControlledVocab.find_or_create_by(name: name) do |c_v|
+        c_v.field = 'tags_sim'
+      end
     end
   end
 end
