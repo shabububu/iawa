@@ -59,6 +59,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("resource_type", :facetable), label: "Type"
 
     config.add_facet_field solr_name("creator", :facetable), label: "Creator"
+    config.add_facet_field solr_name("coverage", :facetable), label: "Coverage"
     config.add_facet_field solr_name("medium", :facetable), label: "Medium"
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
     config.add_facet_field solr_name("tags", :facetable), label: "Tags"
@@ -79,7 +80,6 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field solr_name("description", :stored_searchable), label: "Description", itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name("tags", :stored_searchable), label: "Tags", itemprop: 'tags', link_to_search: solr_name("tags", :facetable)
-    config.add_index_field solr_name("subject", :stored_searchable), label: "Subject", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     config.add_index_field solr_name("creator", :stored_searchable), label: "Creator", itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
     config.add_index_field solr_name("medium", :stored_searchable), label: "Medium", itemprop: 'medium', link_to_search: solr_name("medium", :facetable)
     config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
@@ -91,7 +91,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("date", :stored_searchable), label: "Date", itemprop: 'date'
     config.add_index_field solr_name("resource_type", :stored_searchable), label: "Type", link_to_search: solr_name("resource_type", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), label: "File Format", link_to_search: solr_name("file_format", :facetable)
-    config.add_index_field solr_name("identifier", :stored_searchable), label: "Identifier", helper_method: :index_field_link, field_name: 'identifier'
+    config.add_index_field solr_name("identifier", :stored_searchable), label: "Identifier"
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
