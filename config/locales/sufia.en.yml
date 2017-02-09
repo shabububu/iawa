@@ -57,7 +57,7 @@ en:
           work_confirmation:       "Deleting a item from %{application_name} is permanent. Click OK to delete this item from %{application_name}, or Cancel to cancel this operation"
     works:
       new:
-        header: Add New Item
+        header: Batch Attach Files
         in_collections: This Item in Collections
         after_attach_html: "You uploaded file is being processed by %{application_name} in the background. The files will be attached to their corresponding items until this process is complete (shouldn't take too long, hang in there!). You may need to refresh this page to see these updates."
       edit:
