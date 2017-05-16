@@ -56,10 +56,10 @@ class BatchImport
           itemHash['date'] = field
         when 'Type'
           key = 'resource_type'
-          itemHash[key] = pushToArray(field)
+          itemHash[key] = pushToArray(itemHash[key], field)
         when 'Is Part Of'
           key = 'part_of'
-          itemHash[key] = pushToArray(field)
+          itemHash[key] = pushToArray(itemHash[key], field)
         when 'Rights'
           itemHash['rights'] = field
         when 'Rights Holder'
@@ -68,14 +68,14 @@ class BatchImport
           itemHash['bibliographic_citation'] = field
         else
           key = header.downcase
-          itemHash[key] = pushToArray(field)
+          itemHash[key] = pushToArray(itemHash[key], field)
         end
       end
     end
     itemHash
   end
 
-  def pushToArray(field)
+  def pushToArray(fieldArray, field)
     fieldArray ||= Array.new
     fieldArray << field
   end

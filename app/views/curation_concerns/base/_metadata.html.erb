@@ -1,7 +1,7 @@
 <h2><%= t('.header') %></h2>
 <table class="table table-striped <%= dom_class(presenter) %> attributes" <%= presenter.microdata_type_to_html %>>
   <thead>
-    <tr><th><%= t('.attribute_name_label') %></th><th><%= t('.attribute_values_label') %></th></tr>
+    <tr><th><p><%= t('.attribute_name_label') %></p></th><th><p style="margin-left:1cm"><%= t('.attribute_values_label') %></p></th></tr>
   </thead>
   <tbody>
     <%= render 'attribute_rows', presenter: presenter %>
