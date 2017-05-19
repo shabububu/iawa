@@ -11,7 +11,9 @@ module Iawa
         index.as :symbol
       end
 
-      property :part_of, predicate: ::RDF::Vocab::DC.isPartOf
+      property :part_of, predicate: ::RDF::Vocab::DC.isPartOf do |index|
+        index.as :stored_searchable, :facetable
+      end
       property :resource_type, predicate: ::RDF::Vocab::DC11.type do |index|
         index.as :stored_searchable, :facetable
       end
