@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :controlled_vocabs
-  get 'collections/:id/update_rights', to: 'collections#update_rights', as: 'update_rights_collection'
+  get 'collections/:id/export_csv', to: 'collections#export_csv', as: 'export_csv_collection'#, defaults: { format: :csv }
   resources :batch_imports, only: [:new, :create], controller: 'batch_imports'
   Hydra::BatchEdit.add_routes(self)
   mount Qa::Engine => '/authorities'

@@ -17,4 +17,22 @@ class Collection < ActiveFedora::Base
     end
     members << curation_concerns
   end
+
+  def export_csv
+    headers = ["Digital Object ID", "Title", "Description", "Date", "Language",
+               "Coverage", "Type", "Medium", "Format", "Tags", "Is Part Of",
+               "Rights", "Rights Holder", "Bibliographic Citation"]
+    attributes = %w{identifier title description date language coverage
+                    resource_type medium format tags part_of rights 
+                    rights_holder bibliographic_citation}
+    CSV.generate(headers: true) do |csv|
+      csv << headers
+      members.each do |item|
+        csv << attributes.map do |attr|
+          values = item.send(attr)
+          values.respond_to?(:to_a) ? values.join("~") : values
+        end 
+      end
+    end
+  end
 end
