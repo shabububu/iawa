@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   include CurationConcerns::CollectionsControllerBehavior
   include Sufia::CollectionsControllerBehavior
 
-  skip_load_and_authorize_resource :only => [:update_rights]
+  skip_load_and_authorize_resource :only => [:export_csv]
 
   def presenter_class
     ::CollectionPresenter
@@ -12,6 +12,15 @@ class CollectionsController < ApplicationController
     ::CollectionForm
   end
 
+  def export_csv
+    @collection = Collection.find(params[:id])
+    title = @collection.title.first.gsub(/[^0-9a-z]/i, '_')
+    fname = "#{title}-#{Date.today}.csv"
+    respond_to do |format|
+      format.csv {
+        send_data @collection.export_csv, :disposition => "attachment; filename=#{fname}" }
+    end
+  end
   # Will be used temporarily for fixing the rights and bibliographic_citation metadata
   def update_rights
     @collection = Collection.find(params[:id])
