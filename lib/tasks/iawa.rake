@@ -46,7 +46,7 @@ namespace :iawa do
       end
     end
     tags_names = ["single-story", "two-story", "3 to 5 stories", "6 to 10 stories", "11 to 20 stories",
-                  "Commercial and Office", "Educational and research", "Healthcare", "Industrial",
+                  "Commercial and Office", "Educational and Research", "Healthcare", "Industrial",
                   "Interior Design", "Landscape Architecture", "Portrait", "Residential",
                   "Residential-Housing development", "Residential-Multi-family", "Residential-Single-family",
                   "Single-family", "Urban Design", "Student projects"]

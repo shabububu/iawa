@@ -4,6 +4,7 @@
       <ul class="nav navbar-nav col-sm-7 col-md-7">
         <li <%= 'class=active' if current_page?(sufia.root_path) %>><%= link_to 'Home', sufia.root_path, :'data-no-turbolink'=>"true" %></li>
         <li <%= 'class=active' if current_page?(sufia.about_path) %>><%= link_to 'About', sufia.about_path, :'data-no-turbolink'=>"true" %></li>
+        <li <%= 'class=active' if action_name == "terms" %>><a href="<%= sufia.static_path('terms') %>">Permission Page</a></li>
         <li><%= link_to main_app.search_catalog_path("f[human_readable_type_sim][]": "Collection") do %>
           <span class="glyphicon glyphicon-th"></span>
           <%= t("sufia.homepage.browse_collections").upcase %>
