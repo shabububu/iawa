@@ -62,4 +62,8 @@ class SolrDocument
   def format
     self[Solrizer.solr_name('format')]
   end
+
+  def contributor 
+    self[Solrizer.solr_name('contributor')]
+  end
 end
