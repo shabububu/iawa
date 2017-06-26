@@ -42,11 +42,15 @@ class BatchImport
     else
       imported_items = Array.new
       CSV.foreach(file.path, headers: true) do |row|
-        item = Item.where(identifier: row['Identifier']).first || Item.new
-        #itemHash = processRow(row)
+        itemHash = processRow(row)
+        if item = Item.where(identifier: row['Identifier']).first
+          itemHash['identifier'] = item.identifier
+        else
+          item = Item.new
+        end
         #if collection_id = itemHash.delete(:collection_id) && collection_id != item.collection_id
-         # additemtocollection
-        item.attributes = processRow(row)
+        # additemtocollection
+        item.attributes = itemHash
         item.apply_depositor_metadata(depositor)
         imported_items << item
       end
