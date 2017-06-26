@@ -17,7 +17,7 @@ class Ability
     # Limits creating new objects to a specific group
     #
     if user_groups.include? 'archivist'
-      can [:manage], ControlledVocab
+      can :manage, :all
     end
   end
 end
