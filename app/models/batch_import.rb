@@ -2,6 +2,7 @@ class BatchImport
   include ActiveModel::Model
   attr_accessor :file
   attr_accessor :depositor
+  attr_accessor :base_url
 
   def initialize(attributes = {})
     attributes.each { |name, value| send("#{name}=", value) }
@@ -15,6 +16,11 @@ class BatchImport
     if imported_items.map(&:valid?).all?
       imported_items.each {|i| i.visibility = "open" }
       imported_items.each(&:save!)
+      imported_items.each do |item|
+        unless item.identifier[1]
+          AssignDoiJob.perform_later(item.id, base_url)
+        end
+      end
       true
     else
       imported_items.each_with_index do |item, idx|
@@ -36,7 +42,10 @@ class BatchImport
     else
       imported_items = Array.new
       CSV.foreach(file.path, headers: true) do |row|
-        item = Item.where(identifier: row['Digital Object ID']).first || Item.new
+        item = Item.where(identifier: row['Identifier']).first || Item.new
+        #itemHash = processRow(row)
+        #if collection_id = itemHash.delete(:collection_id) && collection_id != item.collection_id
+         # additemtocollection
         item.attributes = processRow(row)
         item.apply_depositor_metadata(depositor)
         imported_items << item
@@ -50,33 +59,33 @@ class BatchImport
     row.each do |header, field|
       unless field.blank?
         case header
-        when 'Digital Object ID'
-          itemHash['identifier'] = field
-        when 'Date'
-          itemHash['date'] = field
+        #when 'Collection Identifier'
+         # itemHash['collection_id'] = field
+        when 'Start Date'
+          itemHash['date'] ||= String.new
+          itemHash['date'] += field
+        when 'End Date'
+          itemHash['date'] ||= String.new
+          itemHash['date'] += "-" + field
+        when 'Circa'
+          if field == 'yes'
+            itemHash['date'] ||= String.new
+            itemHash['date'] = "c. " + itemHash['date']  
+          end
         when 'Type'
           key = 'resource_type'
-          itemHash[key] = pushToArray(itemHash[key], field)
+          itemHash[key] = field.split('~')
         when 'Is Part Of'
           key = 'part_of'
-          itemHash[key] = pushToArray(itemHash[key], field)
-        when 'Rights'
-          itemHash['rights'] = field
-        when 'Rights Holder'
-          itemHash['rights_holder'] = field
-        when 'Bibliographic Citation'
-          itemHash['bibliographic_citation'] = field
+          itemHash[key] = field.split('~')
+        when 'Related URL'
+          itemHash['related_url'] = field.split('~')
         else
           key = header.downcase
-          itemHash[key] = pushToArray(itemHash[key], field)
+          itemHash[key] = field.split('~')
         end
       end
     end
     itemHash
-  end
-
-  def pushToArray(fieldArray, field)
-    fieldArray ||= Array.new
-    fieldArray << field
   end
 end

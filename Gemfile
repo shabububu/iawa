@@ -69,6 +69,7 @@ end
 gem 'pg'
 gem 'resque-pool'
 gem 'jqcloud-rails'
+gem 'ezid-client'
 gem 'omniauth-cas'
 gem 'gelf'
 gem 'lograge'

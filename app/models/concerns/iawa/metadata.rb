@@ -45,7 +45,7 @@ module Iawa
       property :language, predicate: ::RDF::Vocab::DC11.language do |index|
         index.as :stored_searchable, :facetable
       end
-      property :identifier, predicate: ::RDF::Vocab::DC11.identifier, multiple: false  do |index|
+      property :identifier, predicate: ::RDF::Vocab::DC11.identifier do |index|
         index.as :stored_searchable
       end
       property :based_near, predicate: ::RDF::Vocab::FOAF.based_near do |index|
