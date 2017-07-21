@@ -1,8 +1,0 @@
-language: ruby
-services:
-    - redis-server
-rvm:
-  - "2.2.2"
-script: bundle exec rspec spec
-sudo: false
-cache: bundler

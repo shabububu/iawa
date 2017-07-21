@@ -1,5 +1,0 @@
-Description:
-  Installs the configuration files for local authorities.  Includes an example states.yml file for reference.
-
-Example:
-    rails generate qa:local

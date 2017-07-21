@@ -1,7 +1,0 @@
-Description:
-    Add routes for the Flipflop dashboard.
-
-Example:
-    rails generate flipflop:routes
-
-    This will add routes to app/routes.rb
