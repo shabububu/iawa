@@ -1,0 +1,16 @@
+  <table id="file-list" role="grid" tabindex="-1" title="Choose files to upload from the table below" aria-live="polite">
+    <thead>
+      <tr role="row" tabindex="-1">
+        <th role="columnheader">Name</th>
+        <th role="columnheader">Select All?</th>
+        <th role="columnheader">Size</th>
+        <th role="columnheader">Kind</th>
+        <th role="columnheader">Modified</th>
+      </tr>
+    </thead>
+    <% provider.contents(browse_path).each_with_index do |file, index| %>
+      <% next if file.relative_parent_path? %>
+      <%= render :partial => 'file', :locals => { :file => file, :index => index,
+        :path => browse_everything_engine.contents_path(provider_name, file.id), :parent => params[:parent] } %>
+    <% end %>
+  </table>

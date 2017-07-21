@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+require 'fcrepo_wrapper'
+require 'optparse'
+
+options = {}
+
+subtext = <<HELP
+Commonly used command are:
+   clean :     cleans all data from fedora based on configuration options
+See 'fcrepo_wrapper COMMAND --help' for more information on a specific command.
+HELP
+
+args = OptionParser.new do |opts|
+  opts.banner = "Usage: fcrepo_wrapper [options]"
+
+  opts.on("--config FILE", "Load configuration from a file") do |v|
+    options[:config] = v
+  end
+
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+
+  opts.on("--[no-]jms", "Run with[or witout] JMS") do |v|
+    options[:enable_jms] = v
+  end
+
+  opts.on("--version VERSION", "Specify a fcrepo version to download (default: #{FcrepoWrapper.default_fcrepo_version})") do |v|
+    options[:version] = v
+  end
+
+  opts.on("-pPORT", "--port PORT", "Specify the port fcrepo should run at (default: #{FcrepoWrapper.default_fcrepo_port})") do |p|
+    if p == 'random'
+      options[:port] = nil
+    else
+      options[:port] = p
+    end
+  end
+
+  opts.on("-iDIR", "--instance_directory DIR", "Install/use fcrepo jar at the given directory") do |d|
+    options[:instance_dir] = d
+  end
+
+  opts.on("-dDIR", "--fcrepo_home DIR", "Store fcrepo at the given directory") do |d|
+    options[:fcrepo_home_dir] = d
+  end
+
+  opts.on("-h", "--help", "Show these usage options") do
+    puts opts
+    exit
+  end
+
+  opts.separator ""
+  opts.separator subtext
+end
+
+subcommands = {
+    'clean' => OptionParser.new do |opts|
+      opts.banner = "Usage: clean"
+    end,
+}
+
+begin
+  args.order!
+  command = ARGV.shift
+  if command
+    raise "Bad subcommand: #{command}" unless subcommands[command]
+    subcommands[command].order!
+  end
+  args.parse!
+rescue => error
+  $stderr.puts "ERROR: #{error}\n"
+  $stderr.puts "#{args.help}\n"
+  exit 1
+end
+
+instance = FcrepoWrapper.default_instance(options)
+
+if command == 'clean'
+  $stderr.puts "cleaning #{instance.instance_dir}..."
+  instance.clean!
+  exit 0
+end
+
+$stderr.print "Starting Fedora #{instance.version} on port #{instance.port} ... "
+instance.wrap do |conn|
+  $stderr.puts "http://#{instance.host}:#{instance.port}/"
+  begin
+    while conn.status
+      sleep 1
+    end
+  rescue Interrupt
+    Signal.trap("SIGTERM") { "IGNORE" }
+    Signal.trap("SIGINT") { "IGNORE" }
+    $stderr.puts "Fedora is shutting down."
+  end
+end

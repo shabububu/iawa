@@ -1,0 +1,26 @@
+language: ruby
+cache: bundler
+sudo: false
+before_install:
+  - gem update --system
+  - gem install bundler
+rvm:
+  - 2.2.5
+  - 2.3.4
+  - 2.4.1
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+jdk:
+  - oraclejdk8
+notifications:
+  email:
+    recipients:
+      - "ul-dlt-applications@lists.psu.edu"
+    on_success: "change"
+    on_failure: "always"
+  irc:
+    channels:
+      - "irc.freenode.org#scholarsphere"
+    template:
+      - "%{repository}//%{branch}@%{commit} by %{author}: %{message} - %{build_url}"
