@@ -1,6 +1,5 @@
 default: &default
-  url: <%= Rails.application.secrets['blacklight_url'] %>
-  adapter: solr
+  url: <%= Rails.application.secrets['solr_url'] %>
 
 development:
   <<: *default
