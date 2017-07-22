@@ -44,7 +44,6 @@ bower.json
 
 # Sufia additions
 /jetty
-/bin
 
 # ORCID secret
 config/application.yml
