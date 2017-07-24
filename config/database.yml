@@ -10,17 +10,17 @@ test:
 development:
   adapter: postgresql
   encoding: UTF8
-  database: <%= Rails.application.secrets['database']['name'] %>
-  username: <%= Rails.application.secrets['database']['username'] %>
-  password: <%= Rails.application.secrets['database']['password'] %>
-  <%= "host: #{Rails.application.secrets['database']['host']}" unless Rails.application.secrets['database']['host'].nil? %>
-  <%= "port: #{Rails.application.secrets['database']['port']}" unless Rails.application.secrets['database']['port'].nil? %>
+  database: <%= Rails.application.secrets[:database][:name] %>
+  username: <%= Rails.application.secrets[:database][:username] %>
+  password: <%= Rails.application.secrets[:database][:password] %>
+  <%= "host: #{Rails.application.secrets[:database][:host]}" unless Rails.application.secrets[:database][:host].nil? %>
+  <%= "port: #{Rails.application.secrets[:database][:port]}" unless Rails.application.secrets[:database][:port].nil? %>
 
 production:
   adapter: postgresql
   encoding: UTF8
-  database: <%= Rails.application.secrets['database']['name'] %>
-  username: <%= Rails.application.secrets['database']['username'] %>
-  password: <%= Rails.application.secrets['database']['password'] %>
-  <%= "host: #{Rails.application.secrets['database']['host']}" unless Rails.application.secrets['database']['host'].nil? %>
-  <%= "port: #{Rails.application.secrets['database']['port']}" unless Rails.application.secrets['database']['port'].nil? %>
+  database: <%= Rails.application.secrets[:database][:name] %>
+  username: <%= Rails.application.secrets[:database][:username] %>
+  password: <%= Rails.application.secrets[:database][:password] %>
+  <%= "host: #{Rails.application.secrets[:database][:host]}" unless Rails.application.secrets[:database][:host].nil? %>
+  <%= "port: #{Rails.application.secrets[:database][:port]}" unless Rails.application.secrets[:database][:port].nil? %>
