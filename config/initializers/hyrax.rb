@@ -20,10 +20,10 @@ Hyrax.config do |config|
   # config.subject_prefix = "Contact form:"
 
   # How many notifications should be displayed on the dashboard
-  # config.max_notifications_for_dashboard = 5
+  config.max_notifications_for_dashboard = 5
 
   # How frequently should a file be audited
-  # config.max_days_between_audits = 7
+  config.max_days_between_audits = 7
 
   # Enable displaying usage statistics in the UI
   # Defaults to false
@@ -68,7 +68,7 @@ Hyrax.config do |config|
   # config.redis_namespace = "hyrax"
 
   # Path to the file characterization tool
-  # config.fits_path = "fits.sh"
+  config.fits_path = "/opt/fits/fits.sh"
 
   # Path to the file derivatives creation tool
   # config.libreoffice_path = "soffice"
@@ -82,7 +82,7 @@ Hyrax.config do |config|
 
   # Location autocomplete uses geonames to search for named regions
   # Username for connecting to geonames
-  # config.geonames_username = ''
+  config.geonames_username = Rails.application.secrets[:geonames_username].to_s
 
   # Should the acceptance of the licence agreement be active (checkbox), or
   # implied when the save button is pressed? Set to true for active
