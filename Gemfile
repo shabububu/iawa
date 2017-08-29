@@ -7,11 +7,11 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.1.3'
 # Postgres is default
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.10.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,8 +40,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 2.15.1'
   gem 'selenium-webdriver'
+  gem 'fcrepo_wrapper'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -51,6 +53,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'xray-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -62,19 +65,9 @@ group :development, :test do
 end
 
 gem 'rsolr', '>= 1.0'
-group :development, :test do
-end
 
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-group :development, :test do
-end
 
-group :development, :test do
-  gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
-end
-
-group :development, :test do
-end
+gem 'hydra-role-management'
