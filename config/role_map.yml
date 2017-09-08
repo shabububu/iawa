@@ -1,6 +1,8 @@
 development:
   archivist:
     - archivist1@example.com
+    - whunter@vt.edu
+    - virjtt03@vt.edu
 
 test:
   archivist:
@@ -21,3 +23,12 @@ test:
 
 production:
   # Add roles for users here.
+  archivist:
+    - specref@vt.edu
+    - whunter@vt.edu
+    - virjtt03@vt.edu
+    - kdweeks@vt.edu
+    - aserra@vt.edu
+    - samw@vt.edu
+    - rfitz12@vt.edu
+    - jss3838@vt.edu
