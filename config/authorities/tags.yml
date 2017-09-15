@@ -1,0 +1,39 @@
+terms:
+  - id: single-story
+    term: single-story
+  - id: two-story
+    term: two-story
+  - id: 3 to 5 stories
+    term: 3 to 5 stories
+  - id: 6 to 10 stories
+    term: 6 to 10 stories
+  - id: 11 to 20 stories
+    term: 11 to 20 stories
+  - id: Commercial and Office
+    term: Commercial and Office
+  - id: Educational and Research
+    term: Educational and Research
+  - id: Healthcare
+    term: Healthcare
+  - id: Industrial
+    term: Industrial
+  - id: Interior Design
+    term: Interior Design
+  - id: Landscape Architecture
+    term: Landscape Architecture
+  - id: Portrait
+    term: Portrait
+  - id: Residential
+    term: Residential
+  - id: Residential-Housing development
+    term: Residential-Housing development
+  - id: Residential-Multi-family
+    term: Residential-Multi-family
+  - id: Residential-Single-family
+    term: Residential-Single-family
+  - id: Single-family
+    term: Single-family
+  - id: Urban Design
+    term: Urban Design
+  - id: Student projects
+    term: Student projects

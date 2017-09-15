@@ -1,0 +1,94 @@
+@import 'colors';
+
+#img-fallback, #img-large-wrapper {
+  position: relative;
+  display: block;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: $hokie-cream-light-med;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.55);
+}
+#img-fallback {
+  height: 500px;
+  img {
+    position: relative;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+
+.viewer {
+    -ms-touch-action: none;
+}
+.viewer img {
+    image-orientation: from-image;
+}
+.iviewer_common {
+  position:absolute;
+  bottom:10px;
+  /*border: 1px  solid #000;*/
+  height: 28px;
+  z-index: 5000;
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.55);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.55);
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.55);
+}
+
+.iviewer_cursor {
+    cursor: image_url("zoom/hand.cur") 6 8, pointer;
+}
+
+.iviewer_drag_cursor {
+    cursor: image_url("zoom/grab.cur") 6 8, pointer;
+}
+
+.iviewer_button {
+    width: 28px;
+    cursor: pointer;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.iviewer_zoom_in {
+    left: 20px;
+    background: image_url("zoom/iviewer.zoom_in.gif") center center no-repeat;
+}
+
+.iviewer_zoom_out {
+    left: 55px;
+    background: image_url("zoom/iviewer.zoom_out.gif") center center no-repeat;
+}
+
+.iviewer_zoom_zero {
+    left: 90px;
+    background: image_url("zoom/iviewer.zoom_zero.gif") center center no-repeat;
+}
+
+.iviewer_zoom_fit {
+    left: 125px;
+    background: image_url("zoom/iviewer.zoom_fit.gif") center center no-repeat;
+}
+
+.iviewer_zoom_status {
+    left: 160px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    width: 60px;
+    font-size: 1.25em;
+}
+
+.iviewer_rotate_left {
+    left: 227px;
+    background: #fff image_url("zoom/iviewer.rotate_counter.png") center center no-repeat;
+}
+
+.iviewer_rotate_right {
+    left: 262px;
+    background: #fff image_url("zoom/iviewer.rotate_clockwise.png") center center no-repeat;
+
+}

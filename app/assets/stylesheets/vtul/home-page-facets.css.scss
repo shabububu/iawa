@@ -1,0 +1,56 @@
+@import 'colors';
+
+#home_content {
+  position: relative;
+  display: block;
+  width: 70%;
+  margin: 0 15%;
+}
+.panel-body {
+  padding: 0;
+}
+.facet-values {
+  position: relative;
+  display: block;
+  -webkit-padding-start: 0;
+  li {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0;
+
+    .image-overlay-wrapper {
+      position: absolute;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.65)
+    }
+    .image-overlay {
+      position: relative;
+      display: block;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      color: white;
+      font-size: 16px;
+    }
+  }
+}
+#tag-panel {
+  display: none;
+}
+div.jqcloud a {
+  color: $hokie-maroon;
+}
+div.jqcloud a:hover {
+  color: $hokie-off-maroon;
+}

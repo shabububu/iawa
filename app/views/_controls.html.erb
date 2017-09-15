@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="row">
+      <ul class="nav navbar-nav col-sm-5 col-md-6">
+        <li <%= 'class=active' if current_page?(hyrax.root_path) %>>
+          <%= link_to t(:'hyrax.controls.home'), hyrax.root_path %></li>
+        <li <%= 'class=active' if current_page?(hyrax.about_path) %>>
+          <%= link_to t(:'hyrax.controls.about'), hyrax.about_path %></li>
+        <li <%= 'class=active' if current_page?(hyrax.terms_path) %>>
+          <%= link_to t(:'hyrax.controls.terms'), hyrax.terms_path %></li>
+        <li <%= 'class=active' if current_page?(main_app.search_catalog_path) %>>
+          <%= link_to main_app.search_catalog_path("f[human_readable_type_sim][]": "Collection") do %>
+            <span class="glyphicon glyphicon-th"></span>
+            <%#= t("hyrax.homepage.browse_collections").upcase %>
+          <% end %></li>
+        <li <%= 'class=active' if current_page?(main_app.search_catalog_path) %>>
+          <%= link_to main_app.search_catalog_path("f[human_readable_type_sim][]": "Item") do %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+            <%#= t("hyrax.homepage.browse_works").upcase %>
+          <% end %></li>
+      </ul><!-- /.nav -->
+      <div class="searchbar-right navbar-right col-sm-7 col-md-6">
+        <%= render partial: 'catalog/search_form' %>
+      </div>
+    </div>
+  </div>
+</nav><!-- /.navbar -->

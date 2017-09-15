@@ -1,0 +1,14 @@
+/* VT specific styles */
+@import 'colors';
+
+body {
+  background-color: $hokie-cream-light;
+}
+
+#homeTabs.nav li.active a#featureTab {
+  background-color: $hokie-cream-light-med;
+}
+
+div.heading-tile .glyphicon {
+  background-color: $hokie-orange;
+}
