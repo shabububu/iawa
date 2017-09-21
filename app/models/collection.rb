@@ -3,4 +3,13 @@ class Collection < ActiveFedora::Base
   include ::Hyrax::CollectionBehavior
   # You can replace these metadata if they're not suitable
   include Hyrax::BasicMetadata
+  include Enumerable
+
+  def each
+    members.each { |item| yield item }
+  end
+
+  def add_items (*items)
+    members += items
+  end
 end

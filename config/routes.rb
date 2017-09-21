@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :controlled_vocabs
   
   concern :searchable, Blacklight::Routes::Searchable.new
 
