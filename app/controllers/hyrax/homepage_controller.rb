@@ -3,9 +3,11 @@ class Hyrax::HomepageController < ApplicationController
 
   def index
     super
-    # load carousel images 
-    images = Dir.entries(Rails.root.join('app', 'assets', 'images', 'vtul', 'carousel')).select {|f| !File.directory? f}
-    @images = images.shuffle[0..(images.length)].map { |img| 'vtul/carousel/' + img.to_s }
-     
+    # load carousel images in order from config
+    @images = Rails.configuration.carousel_images.map { |img| 'vtul/carousel/' + img }
+#    (@response, @document_list) = search_results(params)
+builder = Hyrax::AdminSetSearchBuilder.new(self, current_ability)
+                                            .rows(5)
+      @response = repository.search(builder)
   end
 end

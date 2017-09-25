@@ -1,4 +1,4 @@
-<div id="homepage-carousel" class="carousel slide" data-ride="carousel" data-interval="8000">
+<div id="homepage-carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#homepage-carousel" data-slide-to="0" class="active"></li>
@@ -8,48 +8,51 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <div class="img-holder" style="background-image: url(<%= asset_path(@images[0] || '') %>);"></div>
+      <div class="img-holder" style="background-image: url(<%= asset_path(@images[0]) %>);"></div>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-offset-3 col-md-6">
+          <div class="col-md-offset-3 col-md-6 carousel-caption-wrapper">
             <div class="carousel-caption home_marketing_text">
-              <h3>Some text for image 1 if you want it.</h3>
+              <h3><%= t('carousel.slide_1.header') %></h3>
+              <p><%= t('carousel.slide_1.text') %></p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="item">
-      <div class="img-holder" style="background-image: url(<%= asset_path(@images[1] || '') %>);"></div>
+      <div class="img-holder" style="background-image: url(<%= asset_path(@images[1]) %>);"></div>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-offset-3 col-md-6">
+          <div class="col-md-offset-3 col-md-6 carousel-caption-wrapper">
             <div class="carousel-caption home_marketing_text">
-              <h3>Some text for image 2 if you want it.</h3>
+              <h3>Featured Item: <%= link_to t('carousel.slide_2.header'), t('carousel.slide_2.header_href'), class: 'carousel-link' %></h3>
+              <p><%= t('carousel.slide_2.text') %></p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="item">
-      <div class="img-holder" style="background-image: url(<%= asset_path(@images[2] || '') %>);"></div>
+      <div class="img-holder" style="background-image: url(<%= asset_path(@images[2]) %>);"></div>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-offset-3 col-md-6">
+          <div class="col-md-offset-3 col-md-6 carousel-caption-wrapper">
             <div class="carousel-caption home_marketing_text">
-              <h3>Some text for image 3 if you want it.</h3>
+              <h3>Featured Item: <%= link_to t('carousel.slide_3.header'), t('carousel.slide_3.header_href'), class: 'carousel-link' %></h3>
+              <p><%= t('carousel.slide_3.text') %></p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="item">
-      <div class="img-holder" style="background-image: url(<%= asset_path(@images[3] || '') %>);"></div>
+      <div class="img-holder" style="background-image: url(<%= asset_path(@images[3]) %>);"></div>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-offset-3 col-md-6">
+          <div class="col-md-offset-3 col-md-6 carousel-caption-wrapper">
             <div class="carousel-caption home_marketing_text">
-              <h3>Some text for image 4 if you want it.</h3>
+              <h3>Featured Item: <%= link_to t('carousel.slide_4.header'), t('carousel.slide_4.header_href'), class: 'carousel-link' %></h3>
             </div>
           </div>
         </div>

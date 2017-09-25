@@ -30,4 +30,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  carousel:
+    slide_1:
+      header: "Welcome to the IAWA Online Collections"
+      text: "Browse through selected items from the personal collections of 20th century women architects"
+    slide_2:
+      header: "Template Letter from Milka Bliznakov, Requesting Collections for the IAWA, July 9, 1985 (Ms1991-025)"
+      header_href: "#"
+      text: "This letter was written by Milka Bliznakov, founder of the International Archive of Women in Architecture, and sent out to women architects around…"
+    slide_3:
+      header: "Architectural Drawing, Kimiko Suzuki, Abe House #430328, nd (Ms2013-089)"
+      header_href: "#"
+      text: "Floor plan, bird's eye view and perspective drawings of the Susume Abe residence completed in 1967. Abe was a famous education critic in Japan."
+    slide_4:
+      header: "Watercolor Interior Design, \"A Moderne Hotel Suite\", n.d. (Ms2001-005)"
+      header_href: "#"
+

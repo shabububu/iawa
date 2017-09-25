@@ -1,0 +1,87 @@
+$carousel-height: 490px;
+
+#home_header  {
+    background-image: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top: none;
+    border-bottom: 20px solid #F3F3F3;
+}
+
+.carousel {
+  height: $carousel-height;
+  width: 60%;
+  margin: 0 20%;
+}
+@media (max-width: 1080px) {
+  .carousel {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.carousel-caption-wrapper {
+  width: 100%;
+  margin-left: 0;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+}
+
+.home_marketing_text {
+  text-align: left;
+  padding: 2em;
+}
+
+.carousel-indicators {
+  bottom: 0;
+  margin-bottom: 5px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: $carousel-height;
+ }
+
+.img-holder {
+  min-height: $carousel-height;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: $carousel-height;
+}
+
+#homepage-carousel .home_share_work {
+  position: absolute;
+  right: 15px;
+  top: 0;
+}
+
+#homepage-carousel h3{
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.carousel-indicators li {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-color: #5f5f5f;
+}
+
+.carousel-indicators .active {
+  background-color: white;
+  border-radius: 15px;
+  height: 15px;
+}

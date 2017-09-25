@@ -1,11 +1,5 @@
-<% if current_page?('/') %>
-  <% content_for(:navbar) do %>
-    <%= render partial: '/hyrax/homepage/carousel' %>
-  <% end %>
-<% end %>
-<%= render '/controls' %>
-<% content_for(:precontainer_content) do %>
-  <%= render 'hyrax/homepage/announcement' if controller_name == 'homepage' %>
+<% content_for(:navbar) do %>
+    <%= render '/controls' %>
 <% end %>
 
 <%= render template: 'layouts/hyrax' %>
