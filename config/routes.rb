@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :controlled_vocabs
-  
+  get 'collections/:id/export_csv', to: 'collections#export_csv', as: 'export_csv_collection'
+  get 'collections/:id/batch_export', to: 'collections#batch_export', as: 'batch_export_collection'  
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do

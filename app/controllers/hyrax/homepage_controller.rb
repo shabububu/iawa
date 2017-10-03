@@ -5,9 +5,6 @@ class Hyrax::HomepageController < ApplicationController
     super
     # load carousel images in order from config
     @images = Rails.configuration.carousel_images.map { |img| 'vtul/carousel/' + img }
-#    (@response, @document_list) = search_results(params)
-builder = Hyrax::AdminSetSearchBuilder.new(self, current_ability)
-                                            .rows(5)
-      @response = repository.search(builder)
+    @params = params
   end
 end
