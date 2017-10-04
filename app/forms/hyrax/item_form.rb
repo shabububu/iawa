@@ -16,9 +16,26 @@ module Hyrax
       :contributor]
     end
 
-    def self.multiple?(term)
-      return false if :rights ==  term
-      super
+    def multiple?(field)
+      if [:title].include? field.to_sym
+        false
+      else
+        super
+      end
+    end
+
+    def self.model_attributes(_)
+      attrs = super
+      attrs[:title] = Array(attrs[:title]) if attrs[:title]
+      attrs
+    end
+
+    def [](key)
+      if key.to_s == "title"
+        super.first || ""
+      else
+        super
+      end
     end
 
     class << self

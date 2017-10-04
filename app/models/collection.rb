@@ -8,18 +8,6 @@ class Collection < ActiveFedora::Base
   validates :identifier, presence: { message: 'Your collection must have an identifier.' }
   validates :rights_holder, presence: { message: 'Your collection must have a rights holder.' }
 
-  property :coverage, predicate: ::RDF::Vocab::DC11.coverage do |index|
-    index.as :stored_searchable, :facetable
-  end
-
-  def each
-    members.each { |item| yield item }
-  end
-
-  def add_items (*items)
-    members += items
-  end
-
   def export_csv
     headers = ["Digital Object ID", "Title", "Description", "Date", "Language",
                "Coverage", "Type", "Medium", "Format", "Tags", "Is Part Of",
