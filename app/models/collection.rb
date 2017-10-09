@@ -3,7 +3,6 @@ class Collection < ActiveFedora::Base
   include ::Hyrax::CollectionBehavior
   # You can replace these metadata if they're not suitable
   include Hyrax::BasicMetadata
-  include Enumerable
   validates :rights, presence: { message: 'Your collection must have a right.' }
   validates :identifier, presence: { message: 'Your collection must have an identifier.' }
   validates :rights_holder, presence: { message: 'Your collection must have a rights holder.' }

@@ -66,7 +66,6 @@ module Hyrax
       property :source, predicate: ::RDF::Vocab::DC11.source do |index|
         index.as :stored_searchable
       end
-
       property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: false do |index|
         index.as :stored_searchable
       end
