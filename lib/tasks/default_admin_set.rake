@@ -2,6 +2,7 @@ namespace :hyrax do
   namespace :default_admin_set do
     desc "Create the Default Admin Set"
     task create: :environment do
+      Hyrax::PermissionTemplate.create!(admin_set_id: AdminSet::DEFAULT_ID)
       id = AdminSet.find_or_create_default_admin_set_id
       unless Hyrax::PermissionTemplate.find_by(admin_set_id: id)
         $stderr.puts "ERROR: Default admin set exists but it does not have an " \
