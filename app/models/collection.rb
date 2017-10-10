@@ -7,6 +7,18 @@ class Collection < ActiveFedora::Base
   validates :identifier, presence: { message: 'Your collection must have an identifier.' }
   validates :rights_holder, presence: { message: 'Your collection must have a rights holder.' }
 
+  # Add members using the members association.
+  def add_members(new_member_ids)
+    return if new_member_ids.nil? || new_member_ids.empty?
+    items = ActiveFedora::Base.find(new_member_ids)
+    items.each do |item|
+      item.rights = self.rights
+      item.bibliographic_citation = self.bibliographic_citation
+      item.save
+    end
+    members << items
+  end
+
   def export_csv
     headers = ["Digital Object ID", "Title", "Description", "Date", "Language",
                "Coverage", "Type", "Medium", "Format", "Tags", "Is Part Of",

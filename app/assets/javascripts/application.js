@@ -15,11 +15,16 @@
 //
 // Required by Blacklight
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require blacklight/blacklight
+//= require bootstrap/carousel
 
 //= require_tree .
 //= require hyrax
 
+//= require jqcloud
+//= require iawa/auto_fill_name

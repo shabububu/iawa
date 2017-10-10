@@ -66,8 +66,20 @@ end
 
 gem 'rsolr', '>= 1.0'
 
+# Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+# jQuery turbolinks binds turbolinks to doc.ready
+gem 'jquery-turbolinks'
+
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 
 gem 'hydra-role-management'
+gem 'pg'
+gem 'resque-pool'
+gem 'jqcloud-rails'
+gem 'ezid-client'
+gem 'omniauth-cas'
+gem 'gelf'
+gem 'lograge'

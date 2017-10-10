@@ -31,7 +31,7 @@ class SolrDocument
   end
   
   def rights
-    first(Solrizer.solr_name('rights'))
+    self[Solrizer.solr_name('rights')]
   end
 
   def date
