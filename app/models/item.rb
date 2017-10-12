@@ -18,6 +18,9 @@ class Item < ActiveFedora::Base
   property :format, predicate: ::RDF::Vocab::DC11.format do |index|
     index.as :stored_searchable
   end
+  property :location, predicate: ::RDF::Vocab::DC.Location do |index|
+    index.as :stored_searchable
+  end
 
   # class setter  
   self.human_readable_type = 'Item'

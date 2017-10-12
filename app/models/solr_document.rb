@@ -54,8 +54,8 @@ class SolrDocument
     self[Solrizer.solr_name('tags')]
   end
 
-  def part_of
-    self[Solrizer.solr_name('part_of')]
+  def location
+    self[Solrizer.solr_name('location')]
   end
 
   def format

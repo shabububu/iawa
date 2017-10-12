@@ -74,7 +74,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("medium", :stored_searchable), label: "Medium", itemprop: 'medium', link_to_search: solr_name("medium", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), link_to_search: solr_name("file_format", :facetable)
     config.add_index_field solr_name("source", :stored_searchable), label: "Source", itemprop: 'source', helper_method: :link_to_html
-    config.add_index_field solr_name("part_of", :stored_searchable), label: "Is Part Of", itemprop: 'part_of', helper_method: :iconify_auto_link
+    config.add_index_field solr_name("location", :stored_searchable), label: "Location of the originals", itemprop: 'location', helper_method: :iconify_auto_link
     config.add_index_field solr_name("language", :stored_searchable), itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
     config.add_index_field solr_name("coverage", :stored_searchable), label: "Coverage", itemprop: 'coverage', helper_method: :iconify_auto_link
     config.add_index_field solr_name("keyword", :stored_searchable), label: "Tags", itemprop: 'tags', link_to_search: solr_name("keyword", :facetable)
