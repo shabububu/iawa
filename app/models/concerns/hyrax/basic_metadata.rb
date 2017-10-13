@@ -27,7 +27,7 @@ module Hyrax
         index.type :text
         index.as :stored_searchable
       end
-      property :keyword, predicate: ::RDF::Vocab::DC11.relation do |index|
+      property :tags, predicate: ::RDF::Vocab::DC11.relation do |index|
         index.as :stored_searchable, :facetable
       end
       property :rights, predicate: ::RDF::Vocab::DC11.rights, multiple: false do |index|

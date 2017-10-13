@@ -13,10 +13,10 @@ module Hyrax
 
       delegate :human_readable_type, :member_ids, to: :model
 
-      self.terms = [:resource_type, :title, :creator, :contributor, :description,
-                    :keyword, :rights, :publisher, :date_created, :subject, :language,
-                    :representative_id, :thumbnail_id, :identifier, :based_near,
-                    :related_url, :visibility, :source, :bibliographic_citation, 
+      self.terms = [:resource_type, :title, :creator, :description,
+                    :rights, :date_created, :language,
+                    :representative_id, :thumbnail_id, :identifier,
+                    :visibility, :source, :bibliographic_citation, 
                     :rights_holder, :coverage]
 
       self.required_fields = [:title, :rights, :identifier, :rights_holder]
@@ -33,13 +33,7 @@ module Hyrax
       end
 
       def secondary_terms
-        [:contributor,
-         :keyword,
-         :publisher,
-         :subject,
-         :based_near,
-         :related_url,
-         :resource_type]
+        []
       end
 
       module ClassMethods

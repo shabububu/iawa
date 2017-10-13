@@ -78,7 +78,7 @@ namespace :iawa do
                   "Single-family", "Urban Design", "Student projects"]
     tags_names.each do |name|
       ControlledVocab.find_or_create_by(name: name) do |c_v|
-        c_v.field = 'keyword_sim'
+        c_v.field = 'tags_sim'
       end
     end
   end

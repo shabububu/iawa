@@ -51,8 +51,12 @@ class SolrDocument
   end
 
   def tags
-    self[Solrizer.solr_name('tags')]
+    fetch(Solrizer.solr_name('tags'), [])
   end
+
+  def keyword
+    fetch(Solrizer.solr_name('tags'), [])
+  end 
 
   def location
     self[Solrizer.solr_name('location')]

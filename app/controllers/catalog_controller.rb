@@ -47,7 +47,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("coverage", :facetable), label: "Coverage"
     config.add_facet_field solr_name("medium", :facetable), label: "Medium"
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
-    config.add_facet_field solr_name("keyword", :facetable), label: "Tags"
+    config.add_facet_field solr_name("tags", :facetable), label: "Tags"
     config.add_facet_field solr_name("subject", :facetable), limit: 5
     config.add_facet_field solr_name("language", :facetable), limit: 5
     config.add_facet_field solr_name("based_near", :facetable), limit: 5
@@ -77,7 +77,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("location", :stored_searchable), label: "Location of the originals", itemprop: 'location', helper_method: :iconify_auto_link
     config.add_index_field solr_name("language", :stored_searchable), itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
     config.add_index_field solr_name("coverage", :stored_searchable), label: "Coverage", itemprop: 'coverage', helper_method: :iconify_auto_link
-    config.add_index_field solr_name("keyword", :stored_searchable), label: "Tags", itemprop: 'tags', link_to_search: solr_name("keyword", :facetable)
+    config.add_index_field solr_name("tags", :stored_searchable), label: "Tags", itemprop: 'tags', link_to_search: solr_name("tags", :facetable)
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
    config.add_index_field solr_name("related_url", :stored_searchable), label: "Related URL", itemprop: 'related_url', helper_method: :link_to_html
     config.add_index_field solr_name("contributor", :stored_searchable), itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
@@ -95,7 +95,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name("title", :stored_searchable)
     config.add_show_field solr_name("description", :stored_searchable)
-    config.add_show_field solr_name("keyword", :stored_searchable)
+    config.add_show_field solr_name("tags", :stored_searchable)
     config.add_show_field solr_name("subject", :stored_searchable)
     config.add_show_field solr_name("creator", :stored_searchable)
     config.add_show_field solr_name("contributor", :stored_searchable)
@@ -245,8 +245,8 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('keyword') do |field|
-      solr_name = solr_name("keyword", :stored_searchable)
+    config.add_search_field('tags') do |field|
+      solr_name = solr_name("tags", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

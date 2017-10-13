@@ -6,6 +6,7 @@ module Hyrax
       protected
 
         def apply_save_data_to_curation_concern(attributes)
+          attributes[:title] = Array(attributes[:title]) if attributes.key? :title
           remove_blank_attributes!(attributes)
           curation_concern.attributes = attributes
           curation_concern.date_modified = TimeService.time_in_utc
