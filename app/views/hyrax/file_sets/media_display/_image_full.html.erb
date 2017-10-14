@@ -1,0 +1,19 @@
+<div id="img-fallback">
+  <%= image_tag "/downloads/#{file_set.representative_id}" %>
+</div>
+<div id="img-large-wrapper">
+  
+</div>
+<script>
+  $(document).ready(function(){
+    $("#img-fallback").remove();
+    $("#img-large-wrapper")
+        .height(500)
+        .iviewer({
+        src: "<%= "/downloads/#{file_set.representative_id}" %>",
+        zoom: "fit",
+        zoom_min: "1%",
+        ui_disabled: false
+     });
+  });
+</script>
