@@ -1,7 +1,7 @@
 <ul class="facet-values list-unstyled">
   <%
     display_facet.items.each do | item |
-      item[:fq] = { "has_model_ssim" => "Collection"}
+      item[:fq] = {"has_model_ssim" => "Collection"}
     end
   %>
   <% paginator = facet_paginator(facet_field, display_facet) %>
@@ -13,4 +13,3 @@
     </li>
   <% end %>
 </ul>
-

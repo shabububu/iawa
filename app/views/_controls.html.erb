@@ -9,12 +9,12 @@
         <li <%= 'class=active' if current_page?(hyrax.terms_path) %>>
           <%= link_to t(:'hyrax.controls.terms'), hyrax.terms_path %></li>
         <li <%= 'class=active' if current_page?(main_app.search_catalog_path) %>>
-          <%= link_to main_app.search_catalog_path("f[human_readable_type_sim][]": "Collection") do %>
+          <%= link_to main_app.search_catalog_path(f: { human_readable_type_sim: ["Collection"]}) do %>
             <span class="glyphicon glyphicon-th"></span>
-            <%= t("hyrax.homepage.browse_collections").upcase %>
+            <%= t('hyrax.homepage.admin_sets.title').upcase %>
           <% end %></li>
         <li <%= 'class=active' if current_page?(main_app.search_catalog_path) %>>
-          <%= link_to main_app.search_catalog_path("f[human_readable_type_sim][]": "Item") do %>
+          <%= link_to main_app.search_catalog_path(f: { human_readable_type_sim: ["Item"]}) do %>
             <span class="glyphicon glyphicon-eye-open"></span>
             <%= t("hyrax.homepage.browse_works").upcase %>
           <% end %></li>
