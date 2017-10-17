@@ -1,0 +1,31 @@
+<% provide :page_title, curation_concern_page_title(curation_concern) %>
+<% provide :page_header do %>
+  <h1><%= t("sufia.batch_import.#{action_name}.header") %></h1>
+<% end %>
+<p>Please upload a CSV file to import items. The first row should be metadata fields, where the following fields are required:
+  <ul>
+  <li><b>Digital Object ID</b>: single-value field</li>
+  <li><b>Title</b>: multi-value field</li>
+  <li><b>Rights</b>: multi-value field</li>
+  <li><b>Rights Holder</b>: multi-value field</li>
+  </ul>
+If the <b>Digital Object ID</b> field matches an existing item, the item will be updated instead of creating a new one.
+</p>
+
+<%= form_for @batch_import do |f| %>
+  <% if @batch_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@batch_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <ul>
+      <% @batch_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

@@ -9,7 +9,7 @@
                   hyrax.dashboard_works_path(add_files_to_collection: presenter.id),
                   title: t('hyrax.collection.actions.add_works.desc'),
                   class: 'btn btn-default' %>
-    <%= link_to 'Export Metadata', main_app.export_csv_collection_path(presenter.id, format: :csv),
+    <%= link_to 'Export Metadata', main_app.export_metadata_collection_path(presenter.id),
                 title: "Export metadata as a CSV file",
                 class: 'btn btn-default' %>
     <%= link_to 'Download Collection', main_app.batch_export_collection_path(presenter.id),
