@@ -26,6 +26,15 @@ class DownloadGenerator
     FileUtils::mkdir_p(archive_full_path)
   end
 
+  def export_collection_metadata(collection_id)
+    collection_item_ids = Collection.find(collection_id).member_ids
+    if !collection_item_ids.blank?
+      items_file_path = File.join(self.class.csv_dir, archive_name, "collection_#{collection_id}_items.csv")
+      write_csv(items_file_path, Item, collection_item_ids)
+      add_files(collection_item_ids)
+    end
+  end
+
   def export_all_metadata(class_name)
     @model_name = class_name
     @my_class = class_name.constantize

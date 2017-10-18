@@ -1,15 +1,10 @@
-<% provide :page_title, curation_concern_page_title(curation_concern) %>
-<% provide :page_header do %>
-  <h1><%= t("sufia.batch_import.#{action_name}.header") %></h1>
-<% end %>
+<h1>Batch Import Item Metadata</h1>
 <p>Please upload a CSV file to import items. The first row should be metadata fields, where the following fields are required:
   <ul>
-  <li><b>Digital Object ID</b>: single-value field</li>
-  <li><b>Title</b>: multi-value field</li>
-  <li><b>Rights</b>: multi-value field</li>
-  <li><b>Rights Holder</b>: multi-value field</li>
+  <li><b>Identifier</b>: single-value field</li>
+  <li><b>Title</b>: single-value field</li>
   </ul>
-If the <b>Digital Object ID</b> field matches an existing item, the item will be updated instead of creating a new one.
+If the <b>Identifier</b> field matches an existing item, the item will be updated instead of creating a new one.
 </p>
 
 <%= form_for @batch_import do |f| %>

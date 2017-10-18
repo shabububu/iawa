@@ -16,7 +16,7 @@ class BatchImport
       imported_items.each(&:save!)
       imported_items.each do |item|
         unless item.identifier[1]
-          AssignDoiJob.perform_later(item.id, base_url)
+          #AssignDoiJob.perform_later(item.id, base_url)
         end
       end
       true
@@ -63,22 +63,25 @@ class BatchImport
         case header
         #when 'Collection Identifier'
          # itemHash['collection_id'] = field
-        when 'Start Date'
-          itemHash['date'] ||= String.new
-          itemHash['date'] += field
-        when 'End Date'
-          itemHash['date'] ||= String.new
-          itemHash['date'] += "-" + field
         when 'Circa'
           if field == 'yes'
-            itemHash['date'] ||= String.new
-            itemHash['date'] = "c. " + itemHash['date']  
+            itemHash['date_created'] ||= Array.new
+            itemHash['date_created'][0] = "Circa "  
+          else
+            itemHash['date_created'] ||= Array.new
+            itemHash['date_created'][0] = ""  
           end
+        when 'Start Date'
+          itemHash['date_created'] ||= Array.new
+          itemHash['date_created'][0] = "" if itemHash['date_created'][0].nil?  
+          itemHash['date_created'][1] = field
+        when 'End Date'
+          itemHash['date'] = field
         when 'Type'
           key = 'resource_type'
           itemHash[key] = field.split('~')
         when 'Is Part Of'
-          key = 'part_of'
+          key = 'location'
           itemHash[key] = field.split('~')
         when 'Related URL'
           itemHash['related_url'] = field.split('~')

@@ -5,7 +5,7 @@
 
 <%= content_for :sidebar do %>
   <%= render 'hyrax/users/user', user: current_user %>
-  <%= render(partial: "dashboard/_index_partials/export_metadata") if current_user.admin? %>
+  <%= render "hyrax/dashboard/_index_partials/export_metadata" if current_user.admin? %>
 <% end %>
 
 <%= render "hyrax/dashboard/_index_partials/contents" %>

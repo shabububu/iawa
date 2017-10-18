@@ -42,6 +42,9 @@
                     role: 'menuitem'
                   ) %>
             </li>
+            <% if current_user.admin? %>
+              <li><%= link_to 'Batch Import', main_app.new_batch_import_path %></li>
+            <% end %>
           <% else %>
             <% # simple link to the first work type %>
             <li>
@@ -52,9 +55,6 @@
                   role: 'menuitem'
                 ) %>
             </li>
-            <% if current_user.admin? %>
-              <li><%= link_to t("sufia.toolbar.works.batch_import"), main_app.new_batch_import_path %></li>
-            <% end %>
             <li><%= link_to t("hyrax.toolbar.works.batch"),
                             hyrax.new_batch_upload_path(payload_concern: create_work_presenter.first_model) %>
             </li>
