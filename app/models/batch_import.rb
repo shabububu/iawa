@@ -16,7 +16,7 @@ class BatchImport
       imported_items.each(&:save!)
       imported_items.each do |item|
         unless item.identifier[1]
-          #AssignDoiJob.perform_later(item.id, base_url)
+          AssignDoiJob.perform_later(item.id, base_url)
         end
       end
       true
