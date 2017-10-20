@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :controlled_vocabs
   get 'collections/:id/export_metadata', to: 'hyrax/collections#export_metadata', as: 'export_metadata_collection'
   get 'collections/:id/batch_export', to: 'hyrax/collections#batch_export', as: 'batch_export_collection'  

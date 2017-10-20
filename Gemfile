@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 5.1.4' 
 # Postgres is default
 gem 'pg'
 # Use Puma as the app server
@@ -77,7 +77,7 @@ gem 'devise-guests', '~> 0.6'
 
 gem 'hydra-role-management'
 gem 'pg'
-gem 'resque-pool'
+gem 'sidekiq'
 gem 'jqcloud-rails'
 gem 'ezid-client'
 gem 'omniauth-cas'
