@@ -31,7 +31,7 @@ class SolrDocument
   end
   
   def rights
-    self[Solrizer.solr_name('rights')]
+    first(Solrizer.solr_name('rights'))
   end
 
   def date
@@ -43,11 +43,11 @@ class SolrDocument
   end
 
   def bibliographic_citation
-    self[Solrizer.solr_name('bibliographic_citation')]
+    first(Solrizer.solr_name('bibliographic_citation'))
   end
 
   def rights_holder
-    self[Solrizer.solr_name('rights_holder')]
+    first(Solrizer.solr_name('rights_holder'))
   end
 
   def tags

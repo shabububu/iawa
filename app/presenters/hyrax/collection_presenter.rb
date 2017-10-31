@@ -19,7 +19,7 @@ module Hyrax
              :to_s, to: :solr_document
 
     # Metadata Methods
-    delegate :title, :description, :creator, :contributor, :subject, :publisher, :keyword, :language,
+    delegate :title, :description, :creator, :source, :contributor, :subject, :publisher, :keyword, :language,
              :embargo_release_date, :lease_expiration_date, :rights, :date_created,
              :resource_type, :based_near, :related_url, :identifier, 
              :bibliographic_citation, :rights_holder, :coverage, to: :solr_document
