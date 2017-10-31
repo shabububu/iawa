@@ -16,6 +16,22 @@ module Hyrax
       :contributor]
     end
 
+    def [](key)
+      if key.to_s == "title"
+        super.first || ""
+      else
+        super
+      end
+    end
+
+    def multiple?(field)
+      if [:title].include? field.to_sym
+        false
+      else
+        super
+      end
+    end
+
     module ClassMethods
       def multiple?(field)
         if [:title].include? field.to_sym
@@ -30,15 +46,6 @@ module Hyrax
         attrs[:title] = Array(attrs[:title]) if attrs[:title]
         attrs
       end
-
-      def [](key)
-        if key.to_s == "title"
-          super.first || ""
-        else
-          super
-        end
-      end
-
     end
 
   end
