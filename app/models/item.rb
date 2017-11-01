@@ -22,6 +22,8 @@ class Item < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  belongs_to :item_set, predicate: ActiveFedora::RDF::Fcrepo::RelsExt.isPartOf
+
   # class setter  
   self.human_readable_type = 'Item'
 

@@ -8,5 +8,11 @@ module Hyrax
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = ::Item
     self.show_presenter = ::ItemPresenter
+
+    def show
+      super
+      item = Item.find(params[:id])
+      @item_set = item.item_set
+    end
   end
 end
