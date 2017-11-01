@@ -2,13 +2,14 @@ class ControlledVocabsController < ApplicationController
   include Blacklight::Facet  
   load_and_authorize_resource
 
+  helper_method :sort_column, :sort_direction
   before_action :set_field_names
   before_action :set_controlled_vocab, only: [:show, :edit, :update, :destroy]
 
   # GET /controlled_vocabs
   # GET /controlled_vocabs.json
   def index
-    @controlled_vocabs = ControlledVocab.all
+    @controlled_vocabs = ControlledVocab.order(sort_column + " " + sort_direction)
   end
 
   # GET /controlled_vocabs/1
@@ -78,5 +79,13 @@ class ControlledVocabsController < ApplicationController
 
     def set_field_names
       @field_names = facet_field_names.map {|name| [name, name.gsub("_sim", "")]}
+    end
+
+    def sort_column
+      ControlledVocab.column_names.include?(params[:sort]) ? params[:sort] : "field"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
