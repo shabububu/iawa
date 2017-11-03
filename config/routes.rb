@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :controlled_vocabs
   get 'collections/:id/export_metadata', to: 'hyrax/collections#export_metadata', as: 'export_metadata_collection'
-  get 'collections/:id/batch_export', to: 'hyrax/collections#batch_export', as: 'batch_export_collection'  
   get 'dashboard/admin_metadata_export', to: 'dashboard#admin_metadata_export', as: 'admin_metadata_export'
   resources :batch_imports, only: [:new, :create], controller: 'batch_imports'
   mount Blacklight::Engine => '/'

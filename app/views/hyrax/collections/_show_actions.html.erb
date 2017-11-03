@@ -9,11 +9,8 @@
                   hyrax.dashboard_works_path(add_files_to_collection: presenter.id),
                   title: t('hyrax.collection.actions.add_works.desc'),
                   class: 'btn btn-default' %>
-    <%= link_to 'Export Metadata', main_app.export_metadata_collection_path(presenter.id),
+    <%= link_to 'Export Metadata', main_app.export_metadata_collection_path(presenter.id, format: "csv"),
                 title: "Export metadata as a CSV file",
-                class: 'btn btn-default' %>
-    <%= link_to 'Download Collection', main_app.batch_export_collection_path(presenter.id),
-                title: "Download metadata and files of this collection",
                 class: 'btn btn-default' %>
     <% end %>
     <% if can? :destroy, presenter.solr_document %>

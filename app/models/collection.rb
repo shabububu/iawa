@@ -20,19 +20,15 @@ class Collection < ActiveFedora::Base
   end
 
   def export_csv
-    headers = ["Digital Object ID", "Title", "Description", "Date", "Language",
-               "Coverage", "Type", "Medium", "Format", "Tags", "Is Part Of",
+    headers = ["Collection Identifier", "Item Identifier", "Title", "Circa",
+               "Start Date", "End Data", "Description", "Subject", "Type",
+               "Medium", "Format", "Creator", "Source", "Location of Originals",
+               "Language", "Coverage", "Tags", "Related URL", "Contributor",
                "Rights", "Rights Holder", "Bibliographic Citation"]
-    attributes = %w{identifier title description date language coverage
-                    resource_type medium format tags part_of rights 
-                    rights_holder bibliographic_citation}
     CSV.generate(headers: true) do |csv|
       csv << headers
-      members.each do |item|
-        csv << attributes.map do |attr|
-          values = item.send(attr)
-          values.respond_to?(:to_a) ? values.join("~") : values
-        end 
+      member_objects.each do |item|
+        csv << item.csv_values
       end
     end
   end

@@ -27,15 +27,10 @@ class Item < ActiveFedora::Base
   # class setter  
   self.human_readable_type = 'Item'
 
-  def csv_headers
-    ['Identifier', 'Title', 'Circa' 'Start Date', 'End Date', 'Description', 
-     'Subject', 'Type', 'Medium', 'Format', 'Creator', 'Source', 'Is Part Of', 
-     'Language', 'Coverage', 'Tags', 'Related URL', 'Contributor', 'In Collections']
-  end
-
   def csv_values
     ret_array = []
-    collections = self.collections.map{ |c| c.id }.join('~') rescue ""
+    collections = self.member_of_collection_ids.join('~')
+    ret_array << collections
     ret_array << self.identifier.first
     ret_array << self.title.first
     ret_array << self.date_created.first
@@ -54,7 +49,9 @@ class Item < ActiveFedora::Base
     ret_array << self.tags.join('~')
     ret_array << self.related_url.join('~')
     ret_array << self.contributor('~')
-    ret_array << collections
+    ret_array << self.rights
+    ret_array << self.rights_holder
+    ret_array << self.bibliographic_citation
   end
 
   private
