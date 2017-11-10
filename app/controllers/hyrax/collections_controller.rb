@@ -2,9 +2,8 @@ module Hyrax
   class CollectionsController < ApplicationController
     include CollectionsControllerBehavior
     include BreadcrumbsForCollections
-    require 'iawa/download_generator'
 
-    skip_load_and_authorize_resource :only => [:export_metadata, :batch_export]
+    skip_load_and_authorize_resource :only => [:export_metadata]
 
     def export_metadata
       @collection = Collection.find(params[:id])
