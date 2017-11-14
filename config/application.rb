@@ -25,6 +25,6 @@ module Iawa
     # -- all .rb files in that directory are automatically loaded.
 
     # config ActiveJob to use resque
-    config.active_job.queue_adapter = :sidekiq 
+    config.active_job.queue_adapter = :resque 
   end
 end

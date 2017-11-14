@@ -32,7 +32,7 @@ class Item < ActiveFedora::Base
     collections = self.member_of_collection_ids.join('~')
     ret_array << collections
     ret_array << self.identifier.first
-    ret_array << self.title.first
+    ret_array << self.title
     ret_array << self.date_created.first
     ret_array << self.date_created[1]
     ret_array << self.date
