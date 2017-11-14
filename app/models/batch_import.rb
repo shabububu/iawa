@@ -1,8 +1,6 @@
 class BatchImport
   include ActiveModel::Model
-  attr_accessor :file
-  attr_accessor :depositor
-  attr_accessor :base_url
+  attr_accessor :file, :depositor, :base_url
 
   def initialize(attributes = {})
     attributes.each { |name, value| send("#{name}=", value) }
@@ -65,22 +63,25 @@ class BatchImport
         case header
         #when 'Collection Identifier'
          # itemHash['collection_id'] = field
-        when 'Start Date'
-          itemHash['date'] ||= String.new
-          itemHash['date'] += field
-        when 'End Date'
-          itemHash['date'] ||= String.new
-          itemHash['date'] += "-" + field
         when 'Circa'
           if field == 'yes'
-            itemHash['date'] ||= String.new
-            itemHash['date'] = "c. " + itemHash['date']  
+            itemHash['date_created'] ||= Array.new
+            itemHash['date_created'][0] = "Circa "  
+          else
+            itemHash['date_created'] ||= Array.new
+            itemHash['date_created'][0] = ""  
           end
+        when 'Start Date'
+          itemHash['date_created'] ||= Array.new
+          itemHash['date_created'][0] = "" if itemHash['date_created'][0].nil?  
+          itemHash['date_created'][1] = field
+        when 'End Date'
+          itemHash['date'] = field
         when 'Type'
           key = 'resource_type'
           itemHash[key] = field.split('~')
         when 'Is Part Of'
-          key = 'part_of'
+          key = 'location'
           itemHash[key] = field.split('~')
         when 'Related URL'
           itemHash['related_url'] = field.split('~')

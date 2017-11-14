@@ -1,0 +1,13 @@
+<ul class="facet-values list-unstyled">
+  hi
+  <% paginator = facet_paginator(facet_field, display_facet) %>
+  <%#= render_facet_limit_list paginator, solr_field %>
+
+  <% unless paginator.last_page? || params[:action] == "facet" %>
+    <li class="more_facets_link">
+      <%= link_to t("more_#{field_name}_html", scope: 'blacklight.search.facets', default: :more_html, field_name: facet_field.label), 
+        params.merge(id: field_name, controller: "/catalog", action: "facet"), class: "more_facets_link" %>
+    </li>
+  <% end %>
+</ul>
+

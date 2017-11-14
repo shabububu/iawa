@@ -1,6 +1,8 @@
 # Generated via
-#  `rails generate curation_concerns:work Item`
-describe Item do
+#  `rails generate hyrax:work Item`
+require 'rails_helper'
+
+RSpec.describe Item do
 
   describe "#validates_with" do
     before { subject.title = nil }
@@ -83,4 +85,3 @@ describe Item do
     end
   end
 end
-

@@ -49,5 +49,3 @@ var tagCloudHandler = function() {
   TagCloudHandler.init();
   TagCloudHandler.run();
 }
-
-  

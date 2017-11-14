@@ -1,9 +1,10 @@
 # Generated via
-#  `rails generate curation_concerns:work Item`
+#  `rails generate hyrax:work Item`
 require 'rails_helper'
 include Warden::Test::Helpers
 
-feature 'Create a Item' do
+# NOTE: If you generated more than one work, you have to set "js: true"
+RSpec.feature 'Create a Item', js: false do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -13,14 +14,20 @@ feature 'Create a Item' do
     end
 
     before do
+      AdminSet.find_or_create_default_admin_set_id
       login_as user
     end
 
     scenario do
-      visit new_curation_concerns_item_path
-      fill_in 'Title', with: 'Test Item'
-      click_button 'Create Item'
-      expect(page).to have_content 'Test Item'
+      visit '/dashboard'
+      click_link "Works"
+      click_link "Add new work"
+
+      # If you generate more than one work uncomment these lines
+      # choose "payload_concern", option: "Item"
+      # click_button "Create work"
+
+      expect(page).to have_content "Add New Item"
     end
   end
 end

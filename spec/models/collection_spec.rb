@@ -1,4 +1,7 @@
-describe Collection do
+require 'rails_helper'
+
+RSpec.describe Collection do
+
     describe "#validates_with" do
 
     before { subject.rights = nil }

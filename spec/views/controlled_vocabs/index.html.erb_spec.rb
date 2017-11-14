@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "controlled_vocabs/index", type: :view do
+RSpec.describe "controlled_vocabs/index.html.erb", type: :view do
   before(:each) do
     assign(:controlled_vocabs, [
       ControlledVocab.create!(

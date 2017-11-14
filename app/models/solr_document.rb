@@ -3,10 +3,9 @@ class SolrDocument
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
 
-  # Adds CurationConcerns behaviors to the SolrDocument.
-  include CurationConcerns::SolrDocumentBehavior
-  # Adds Sufia behaviors to the SolrDocument.
-  include Sufia::SolrDocumentBehavior
+  # Adds Hyrax behaviors to the SolrDocument.
+  include Hyrax::SolrDocumentBehavior
+
 
   # self.unique_key = 'id'
 
@@ -44,19 +43,23 @@ class SolrDocument
   end
 
   def bibliographic_citation
-    self[Solrizer.solr_name('bibliographic_citation')]
+    first(Solrizer.solr_name('bibliographic_citation'))
   end
 
   def rights_holder
-    self[Solrizer.solr_name('rights_holder')]
+    first(Solrizer.solr_name('rights_holder'))
   end
 
   def tags
-    self[Solrizer.solr_name('tags')]
+    fetch(Solrizer.solr_name('tags'), [])
   end
 
-  def part_of
-    self[Solrizer.solr_name('part_of')]
+  def keyword
+    fetch(Solrizer.solr_name('tags'), [])
+  end 
+
+  def location
+    self[Solrizer.solr_name('location')]
   end
 
   def format

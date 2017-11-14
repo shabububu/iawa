@@ -1,5 +1,4 @@
 <%= f.input :tags, as: :select,
-    collection: TagsService.select_all_options,
-    item_helper: method(:include_current_value),
+    collection: Hyrax::TagsService.select_all_options,
     input_html: { class: 'form-control', multiple: true }
 %>

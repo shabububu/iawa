@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "controlled_vocabs/edit", type: :view do
+RSpec.describe "controlled_vocabs/edit.html.erb", type: :view do
   before(:each) do
     @controlled_vocab = assign(:controlled_vocab, ControlledVocab.create!(
       :field => "MyString",

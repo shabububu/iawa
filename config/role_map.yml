@@ -22,6 +22,7 @@ test:
     - leland_himself@example.com
 
 production:
+  # Add roles for users here.
   archivist:
     - specref@vt.edu
     - whunter@vt.edu

@@ -1,0 +1,10 @@
+zh:
+  hyrax:
+    icons:
+      item_set:     'fa fa-file-text-o'
+    select_type:
+      item_set:
+        # TODO: translate `human_name` into Chinese
+        name:               "Item Set"
+        # TODO: translate `human_name` into Chinese
+        description:        "Item set 作品"

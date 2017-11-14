@@ -1,9 +1,6 @@
-default: &default
-  url: <%= Rails.application.secrets['solr_url'] %>
-
 development:
-  <<: *default
+  url: <%= Rails.application.secrets[:solr_url] %>
 test:
-  <<: *default
+  url: <%= ENV['TRAVIS'] ? 'http://localhost:8985/solr/hydra-test' : Rails.application.secrets[:solr_url] %>
 production:
-  <<: *default
+  url: <%= Rails.application.secrets[:solr_url] %>
