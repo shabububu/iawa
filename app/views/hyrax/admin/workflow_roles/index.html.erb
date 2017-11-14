@@ -1,0 +1,21 @@
+<div class="<%= "dashboard-#{action_name}" %>">
+  <div class="wrapper">
+    <div class="widget widget-default">
+      <table class="table table-striped">
+        <thead>
+          <th><%= t('.header.user') %></th>
+          <th><%= t('.header.roles') %></th>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <h2><%= t('.new_role') %></h2>
+      <%= simple_form_for Hyrax::Forms::WorkflowResponsibilityForm.new, url: hyrax.admin_workflow_roles_path do |f| %>
+        <%= f.input :user_id, as: :select, collection: f.object.user_options %>
+        <%= f.input :workflow_role_id, as: :select, collection: f.object.workflow_role_options %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>

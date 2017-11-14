@@ -76,7 +76,6 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 
 gem 'hydra-role-management'
-gem 'pg'
 gem 'sidekiq'
 gem 'jqcloud-rails'
 gem 'ezid-client'
