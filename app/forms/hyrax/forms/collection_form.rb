@@ -36,36 +36,6 @@ module Hyrax
         []
       end
 
-      def multiple?(field)
-        if [:title].include? field.to_sym
-          false
-        else
-          super
-        end
-      end
-
-      def self.multiple?(field)
-        if [:title].include? field.to_sym
-          false
-        else
-          super
-        end
-      end
-
-      def self.model_attributes(form_params)
-          attrs = super
-          attrs[:title] = Array(attrs[:title]) if attrs[:title]
-          attrs
-        end
-
-      def [](key)
-        if key.to_s == "title"
-          super.first || ""
-        else
-          super
-        end
-      end
-
       private
 
         def all_files
