@@ -9,7 +9,7 @@ class BatchImportsController < ApplicationController
     authenticate_user!
     @batch_import = BatchImport.new(params[:batch_import].merge(depositor: current_user.user_key, base_url: request.base_url))
     if @batch_import.save
-      flash[:notice] = t('sufia.batch_import.new.after_import_html', 
+      flash[:notice] = t('hyrax.batch_import.new.after_import_html', 
                        application_name: view_context.application_name)
       redirect_to hyrax.dashboard_works_path
     else
