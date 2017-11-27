@@ -10,12 +10,12 @@ module Hyrax::FileSetHelper
   # REVIEW: Since this media display could theoretically work for
   #         any object that inplements to_s and the Mime Type methos (image? audio? ...),
   #         Should this really be in file_set or could it be in it's own helper class like media_helper?
-  def media_display_full(presenter, locals = {})
-    render media_display_partial_full(presenter),
+  def media_display(presenter, locals = {})
+    render media_display_partial(presenter),
            locals.merge(file_set: presenter)
   end
 
-  def media_display_partial_full(file_set)
+  def media_display_partial(file_set)
     'hyrax/file_sets/media_display/' +
       if file_set.image?
         'image_full'
