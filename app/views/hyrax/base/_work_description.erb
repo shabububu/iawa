@@ -1,0 +1,5 @@
+<% presenter.description.each do |description| %>
+  <p style="border-top: 1px solid #ddd" class="work_description">
+    <%= safe_join(description.split(/\r\n|\r|\n/),"<br />".html_safe) %>
+  </p>
+<% end %>
