@@ -35,7 +35,7 @@ var TagCloudHandler = {
       _this.wordArray.push({
         text: label,
         weight: facetCount,
-        link: href
+        link: decodeURI(href),
       });
     });
   },
