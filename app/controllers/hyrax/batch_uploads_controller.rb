@@ -17,11 +17,12 @@ class Hyrax::BatchUploadsController < ApplicationController
       uploaded_files = []
     end
     uploaded_files.each do |uploaded_file|
-      title = uploaded_file.file.current_path.split('/').last.split('.')[0]
-      id = title[0...title.rindex('_')]
-      item = Item.where(identifier: [id]).first
-      unless item.file_sets.any? { |fs| fs.title.first == title }
-        AttachFilesToWorkJob.perform_later(item.id, uploaded_file.id)
+      title = uploaded_file.file.current_path.split('/').last
+      file_name = title.split('.')[0]
+      id = file_name[0...file_name.rindex('_')]
+      item = Item.where(identifier: [id]).first rescue nil
+      unless item.nil? || item.file_sets.any? { |fs| fs.title.first == title }
+        AttachFilesToWorkJob.perform_later(item, [uploaded_file])
       end
     end
   end
