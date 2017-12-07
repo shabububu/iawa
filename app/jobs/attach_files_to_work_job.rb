@@ -4,17 +4,18 @@ class AttachFilesToWorkJob < ActiveJob::Base
 
   # @param [ActiveFedora::Base] work - the work object
   # @param [Array<UploadedFile>] uploaded_files - an array of files to attach
-  def perform(work_id, uploaded_file_id)
-    work = Item.find(work_id)
-    uploaded_file = Hyrax::UploadedFile.find(uploaded_file_id)
-    file_set = FileSet.create
-    user = User.find_by_user_key(work.depositor)
-    actor = Hyrax::Actors::FileSetActor.new(file_set, user)
-    actor.create_metadata(visibility: work.visibility)
-    attach_content(actor, uploaded_file.file)
-    actor.attach_file_to_work(work)
-    actor.file_set.permissions_attributes = work.permissions.map(&:to_hash)
-    uploaded_file.update(file_set_uri: file_set.uri)
+  def perform(work, uploaded_files)
+    uploaded_files.each do |uploaded_file|
+      file_set = FileSet.create
+      user = User.find_by_user_key(work.depositor)
+      actor = Hyrax::Actors::FileSetActor.new(file_set, user)
+      actor.create_metadata(visibility: work.visibility)
+      attach_content(actor, uploaded_file.file)
+      actor.attach_file_to_work(work)
+      actor.file_set.permissions_attributes = work.permissions.map(&:to_hash)
+
+      uploaded_file.update(file_set_uri: file_set.uri)
+    end
   end
 
   private
