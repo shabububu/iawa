@@ -15,7 +15,7 @@ module Hyrax
       super
       item = Item.find(params[:id])
       @item_set = item.item_set
-      @images = item.file_sets(&:image?)
+      @images = item.file_sets.select(&:image?).sort_by { |img| img.title.first }
     end
 
     def manifest

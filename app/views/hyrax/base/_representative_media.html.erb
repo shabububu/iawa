@@ -1,5 +1,17 @@
 <% if !@images.empty? %>
-  <a href="http://universalviewer.io/uv.html?manifest=<%= presenter.manifest_url -%>" target="_blank">View in Universal Viewer</a>
+    <div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+    <script type="text/javascript">
+      var $viewer = OpenSeadragon({
+        id: "openseadragon1",
+        sequenceMode: true,
+        showReferenceStrip: true,
+        tileSources: [
+          <% @images.each do |img| -%>
+          "<%= riiif.info_path(img.original_file.id, locale: nil) -%>",
+          <% end -%>
+        ]
+      });
+    </script>
 <% elsif presenter.representative_id.present? && presenter.representative_presenter.present? %>
   <%= media_display presenter.representative_presenter %>
 <% else %>
