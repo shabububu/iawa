@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+  mount Riiif::Engine => '/image-service', as: 'riiif'
 
   resources :controlled_vocabs
   get 'collections/:id/export_metadata', to: 'hyrax/collections#export_metadata', as: 'export_metadata_collection'
@@ -25,7 +26,12 @@ Rails.application.routes.draw do
   mount Qa::Engine => '/authorities'
   resources :welcome, only: 'index'
   root 'hyrax/homepage#index'
-  curation_concerns_basic_routes
+  curation_concerns_basic_routes do
+    member do
+      get :manifest
+    end
+  end
+
   curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
 

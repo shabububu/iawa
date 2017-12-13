@@ -7,6 +7,9 @@
 
     <span class="state state-<%= @presenter.workflow.state %>"><%= @presenter.workflow.state_label %></span>
   </div>
+  <div class="col-xs-12">
+    <%= render 'representative_media', presenter: @presenter %>
+  </div>
   <div class="col-sm-8">
     <%= render 'work_description', presenter: @presenter %>
     <%= render 'relationships', presenter: @presenter %>
@@ -15,7 +18,6 @@
   <div class="col-sm-4">
     <%= render "show_actions", presenter: @presenter %>
     <%= t('.last_modified', value: @presenter.date_modified) %>
-    <%= render 'representative_media', presenter: @presenter %>
     <%= render 'social_media' %>
     <%= render 'citations', presenter: @presenter %>
   </div>
