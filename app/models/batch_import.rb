@@ -65,16 +65,11 @@ class BatchImport
          # itemHash['collection_id'] = field
         when 'Circa'
           if field == 'yes'
-            itemHash['date_created'] ||= Array.new
-            itemHash['date_created'][0] = "Circa "  
-          else
-            itemHash['date_created'] ||= Array.new
-            itemHash['date_created'][0] = ""  
+            itemHash['date_created'] = "Circa "  
           end
         when 'Start Date'
-          itemHash['date_created'] ||= Array.new
-          itemHash['date_created'][0] = "" if itemHash['date_created'][0].nil?  
-          itemHash['date_created'][1] = field
+          itemHash['date_created'] ||= "" 
+          itemHash['date_created'] += field
         when 'End Date'
           itemHash['date'] = field
         when 'Type'

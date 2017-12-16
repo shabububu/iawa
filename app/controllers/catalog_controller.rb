@@ -69,8 +69,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field solr_name("identifier", :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'
-    config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
-    config.add_index_field solr_name("date_created", :stored_searchable), label: 'Date', itemprop: 'date'
+    config.add_index_field solr_name("description", :stored_searchable)
+    config.add_index_field 'date_range', label: 'Date', accessor: 'date_range'
     config.add_index_field solr_name("resource_type", :stored_searchable), label: "Type", link_to_search: solr_name("resource_type", :facetable)
     config.add_index_field solr_name("medium", :stored_searchable), label: "Medium", itemprop: 'medium', link_to_search: solr_name("medium", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), link_to_search: solr_name("file_format", :facetable)
@@ -190,7 +190,15 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('date_created') do |field|
-      solr_name = solr_name("created", :stored_searchable)
+      solr_name = solr_name("date_created", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('date') do |field|
+      solr_name = solr_name("date", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

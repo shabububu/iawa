@@ -38,6 +38,18 @@ class SolrDocument
     first(Solrizer.solr_name('date'))
   end
 
+  def date_created
+    first(Solrizer.solr_name('date_created'))
+  end
+
+  def date_range
+    if date.blank?
+      date_range = date_created
+    else
+      date_range = date_created + ' - ' + date
+    end
+  end
+
   def medium
     self[Solrizer.solr_name('medium')]
   end
