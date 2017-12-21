@@ -24,7 +24,7 @@ module Iawa
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # config ActiveJob to use resque
-    config.active_job.queue_adapter = :sidekiq
+    # config ActiveJob backend
+    config.active_job.queue_adapter = Rails.application.secrets[:active_job_backend]
   end
 end
