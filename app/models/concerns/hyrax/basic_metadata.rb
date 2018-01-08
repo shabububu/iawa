@@ -36,11 +36,11 @@ module Hyrax
       property :publisher, predicate: ::RDF::Vocab::DC11.publisher do |index|
         index.as :stored_searchable, :facetable
       end
-      property :date_created, predicate: ::RDF::Vocab::DC.created do |index|
-        index.as :stored_searchable
+      property :date_created, predicate: ::RDF::Vocab::DC.created, multiple: false do |index|
+        index.as :stored_searchable, :stored_sortable
       end
       property :date, predicate: ::RDF::Vocab::DC11.date, multiple: false do |index|
-        index.as :stored_searchable, :stored_sortable
+        index.as :stored_searchable
       end
       property :subject, predicate: ::RDF::Vocab::DC11.subject do |index|
         index.as :stored_searchable, :facetable
