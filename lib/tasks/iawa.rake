@@ -24,7 +24,6 @@ namespace :iawa do
       if results.count == 1
         user = User.find_or_initialize_by({email: email})
         user.provider = 'cas'
-        user.uid = email.split('@')[0]
 
         result = results[0]
         ldap_attributes.each do |user_attr, ldap_attr|
