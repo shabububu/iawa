@@ -9,7 +9,7 @@ module Hyrax
     self.curation_concern_type = ::Item
     self.show_presenter = ::ItemPresenter
 
-    skip_load_and_authorize_resource only: :manifest
+    skip_load_and_authorize_resource only: [:manifest, :mirador_frame]
 
     def show
       super
@@ -23,6 +23,11 @@ module Hyrax
       respond_to do |format|
         format.json { render json: manifest_builder.to_h }
       end
+    end
+
+    def mirador_frame
+      @manifest_url = presenter.manifest_url
+      render :layout => false
     end
 
     private

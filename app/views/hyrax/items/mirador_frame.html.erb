@@ -1,0 +1,15 @@
+<script src="/mirador.js"></script>
+<link rel='stylesheet' href='/mirador-combined.min.css' />
+<div id='mirador_viewer' style='height: 100%; width: 100%'></div>
+<script>
+  $(function() {
+    Mirador({
+      "id":"mirador_viewer",
+      "buildPath":"/assets/",
+      "i18nPath":"",
+      "imagesPath":"",
+      "data":[{"manifestUri":"<%= @manifest_url -%>.json","locale":"en"}],
+      "windowObjects":[{"loadedManifest":"<%= @manifest_url -%>.json","viewType":"ImageView"}]
+    })
+  });
+</script>
