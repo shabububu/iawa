@@ -14,18 +14,21 @@ namespace :iawa do
     ldap = Net::LDAP.new(host: 'directory.vt.edu')
     ldap.bind
     treebase = 'ou=People,dc=vt,dc=edu'
-    ldap_attributes = {uid: :authid, display_name: :displayname, department: :department}
+    ldap_attributes = {display_name: :displayname, department: :department}
     #Address is available as :postaladdress as well.
 
-    IO.foreach('user_list.txt') do |email|
-      email = email.strip
-      filter = Net::LDAP::Filter.eq('mail', email)
+    IO.foreach('user_list.txt') do |line|
+      line = line.split
+      uid = line[0]
+      pid = line[1]
+      filter = Net::LDAP::Filter.eq('uid', uid)
       results = ldap.search(base: treebase, filter: filter)
       if results.count == 1
-        user = User.find_or_initialize_by({email: email})
-        user.provider = 'cas'
-
         result = results[0]
+
+        user = User.find_or_initialize_by({uid: pid})
+        user.provider = 'cas'
+        user.email = (result.respond_to?(:mail) ? result[:mail][0] : "#{pid}@vt.edu")
         ldap_attributes.each do |user_attr, ldap_attr|
           user_attr = user_attr.to_sym
           if result.respond_to?(ldap_attr)
@@ -36,14 +39,14 @@ namespace :iawa do
         new_user = user.id.nil?
         user.save!
         if new_user
-          puts "Created '#{email}'."
+          puts "Created '#{pid}'."
         else
-          puts "Updated '#{email}'."
+          puts "Updated '#{pid}'."
         end
       elsif results.count > 1
-        puts "Searching for '#{email}' did not return a unique result."
+        puts "Searching for '#{pid}' did not return a unique result."
       else
-        puts "Searching for '#{email}' did not return any results."
+        puts "Searching for '#{pid}' did not return any results."
       end
     end
   end
@@ -52,17 +55,17 @@ namespace :iawa do
   task upgrade_users: :environment do
     admin_role = Role.find_by({name: 'admin'})
 
-    IO.foreach('admin_list.txt') do |email|
-      email = email.strip
-      user = User.find_by({email: email})
+    IO.foreach('admin_list.txt') do |pid|
+      pid = pid.strip
+      user = User.find_by({uid: pid})
 
       if !user.nil?
         user.roles << admin_role
         user.roles = user.roles.uniq
         user.save!
-        puts "#{email} upgraded."
+        puts "#{pid} upgraded."
       else
-        puts "#{email} user does not exist in system."
+        puts "#{pid} user does not exist in system."
       end
     end
   end
