@@ -6,8 +6,8 @@
 <%= presenter.attribute_to_html(:language, render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:resource_type, label: "Type", render_as: :faceted ) %>
 <%= presenter.attribute_to_html(:identifier) %>
-<%= presenter.attribute_to_html(:coverage, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:location, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:coverage, label: "Location", render_as: :faceted) %>
+<%= presenter.attribute_to_html(:location, label: "Belongs to", render_as: :faceted) %>
 <%= presenter.attribute_to_html(:medium, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:bibliographic_citation) %>
 <%= presenter.attribute_to_html(:rights_holder, render_as: :rights_holder) %>

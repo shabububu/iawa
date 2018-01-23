@@ -44,8 +44,8 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), label: "Type"
     config.add_facet_field solr_name("creator", :facetable), label: "Creator"
-    config.add_facet_field solr_name("location", :facetable), label: "Location of Originals"
-    config.add_facet_field solr_name("coverage", :facetable), label: "Coverage"
+    config.add_facet_field solr_name("location", :facetable), label: "Belongs to"
+    config.add_facet_field solr_name("coverage", :facetable), label: "Location"
     config.add_facet_field solr_name("medium", :facetable), label: "Medium"
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
     config.add_facet_field solr_name("tags", :facetable), label: "Tags"
@@ -75,15 +75,14 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("medium", :stored_searchable), label: "Medium", itemprop: 'medium', link_to_search: solr_name("medium", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), link_to_search: solr_name("file_format", :facetable)
     config.add_index_field solr_name("source", :stored_searchable), label: "Source", itemprop: 'source', helper_method: :link_to_html
-    config.add_index_field solr_name("location", :stored_searchable), label: "Location of Originals", link_to_search: solr_name("location", :facetable)
+    config.add_index_field solr_name("location", :stored_searchable), label: "Belongs to", link_to_search: solr_name("location", :facetable)
     config.add_index_field solr_name("language", :stored_searchable), itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
-    config.add_index_field solr_name("coverage", :stored_searchable), label: "Coverage", itemprop: 'coverage', helper_method: :iconify_auto_link
+    config.add_index_field solr_name("coverage", :stored_searchable), label: "Location", helper_method: :iconify_auto_link
     config.add_index_field solr_name("tags", :stored_searchable), label: "Tags", itemprop: 'tags', link_to_search: solr_name("tags", :facetable)
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
    config.add_index_field solr_name("related_url", :stored_searchable), label: "Related URL", itemprop: 'related_url', helper_method: :link_to_html
     config.add_index_field solr_name("contributor", :stored_searchable), itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
     config.add_index_field solr_name("proxy_depositor", :symbol), label: "Depositor", helper_method: :link_to_profile
-    config.add_index_field solr_name("depositor"), label: "Owner", helper_method: :link_to_profile
     config.add_index_field solr_name("publisher", :stored_searchable), itemprop: 'publisher', link_to_search: solr_name("publisher", :facetable)
     config.add_index_field solr_name("based_near", :stored_searchable), itemprop: 'contentLocation', link_to_search: solr_name("based_near", :facetable)
 #    config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
@@ -239,15 +238,6 @@ class CatalogController < ApplicationController
 
     config.add_search_field('identifier') do |field|
       solr_name = solr_name("id", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('based_near') do |field|
-      field.label = "Location"
-      solr_name = solr_name("based_near", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
