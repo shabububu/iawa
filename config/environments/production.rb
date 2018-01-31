@@ -47,13 +47,6 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
-
-  # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
-
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
@@ -72,20 +65,34 @@ Rails.application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+  # Logging
+  if Rails.application.secrets[:graylog][:enabled] == true
+    graylog_settings = Rails.application.secrets[:graylog]
+    graylog_host = graylog_settings[:host] || '127.0.0.1'
+    graylog_port = graylog_settings[:port] || 12201
+    graylog_network_locality = graylog_settings[:network_locality] || :WAN
+    graylog_protocol = graylog_settings[:protocol] || 'udp'
+    graylog_protocol = graylog_protocol.downcase == 'tcp' ? GELF::Protocol::TCP : GELF::Protocol::UDP
+    graylog_facility = graylog_settings[:facility]
+    graylog_verbosity = graylog_settings[:verbosity] || 'info'
 
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
-
-  # Use a different logger for distributed setups.
-  # require 'syslog/logger'
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.lograge.enabled = true
+    config.lograge.formatter = Lograge::Formatters::Graylog2.new
+    config.logger = GELF::Logger.new(graylog_host, graylog_port,
+        graylog_network_locality, { :protocol => graylog_protocol,
+                                    :facility => graylog_facility })
+    config.log_level = graylog_verbosity
+    config.colorize_logging = false
+    # Log controller params, too
+    config.lograge.custom_options = lambda do |event|
+      params = event.payload[:params].reject { |k| %w(controller action).include?(k) }
+      { "params" => params }
+    end
+  else
+    # Create a standard logger that writes to log/production.log and rotates them daily
+    config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), "daily")
+    config.log_level = :warn
   end
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
