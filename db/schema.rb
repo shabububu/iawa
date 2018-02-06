@@ -467,6 +467,7 @@ ActiveRecord::Schema.define(version: 20171030144624) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "guest", default: false
     t.string "facebook_handle"
     t.string "twitter_handle"
     t.string "googleplus_handle"
