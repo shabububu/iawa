@@ -18,6 +18,10 @@ class ItemPresenter < Hyrax::WorkShowPresenter
     end
   end
 
+  def file_set_presenters
+    ((super || []) rescue []).sort_by {|fs| fs.title.first}
+  end
+
   def manifest_url
     manifest_helper.polymorphic_url([:manifest, self])
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030144624) do
+ActiveRecord::Schema.define(version: 20180202180941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -467,7 +467,6 @@ ActiveRecord::Schema.define(version: 20171030144624) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "guest", default: false
     t.string "facebook_handle"
     t.string "twitter_handle"
     t.string "googleplus_handle"
@@ -493,6 +492,7 @@ ActiveRecord::Schema.define(version: 20171030144624) do
     t.string "zotero_userid"
     t.string "provider", null: false
     t.string "uid", null: false
+    t.boolean "guest", default: false
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["uid"], name: "index_users_on_uid"
   end
