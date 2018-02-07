@@ -46,7 +46,13 @@ class BatchImport
         else
           item = Item.new
         end
-        #if collection_id = itemHash.delete(:collection_id) && collection_id != item.collection_id
+        if collection_id = itemHash.delete("collection_id")
+          if collection = Collection.where(identifier: [collection_id]).first
+            unless item.member_of_collection_ids.include?(collection.id)
+              item.member_of_collections << collection
+            end
+          end
+        end
         # additemtocollection
         item.attributes = itemHash
         item.apply_depositor_metadata(depositor)
@@ -61,8 +67,8 @@ class BatchImport
     row.each do |header, field|
       unless field.blank?
         case header
-        #when 'Collection Identifier'
-         # itemHash['collection_id'] = field
+        when 'Collection Identifier'
+          itemHash['collection_id'] = field
         when 'Circa'
           if field == 'yes'
             itemHash['date_created'] = "Circa "  
