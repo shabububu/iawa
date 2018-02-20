@@ -33,9 +33,7 @@ class Item < ActiveFedora::Base
     ret_array << collections
     ret_array << self.identifier.first
     ret_array << self.title
-    ret_array << self.date_created.first
-    ret_array << self.date_created[1]
-    ret_array << self.date
+    ret_array << self.date_range
     ret_array << self.description.join('~')
     ret_array << self.subject.join('~')
     ret_array << self.resource_type.join('~')

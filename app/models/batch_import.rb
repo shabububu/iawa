@@ -15,7 +15,7 @@ class BatchImport
       imported_items.each {|i| i.visibility = "open" }
       imported_items.each(&:save!)
       imported_items.each do |item|
-        unless item.identifier[1]
+        unless item.identifier.to_a.any? { |id| /\A#{Ezid::Client.config.default_shoulder}/ =~ id}
           AssignDoiJob.perform_later(item.id, base_url)
         end
       end
@@ -42,7 +42,7 @@ class BatchImport
       CSV.foreach(file.path, headers: true) do |row|
         itemHash = processRow(row)
         if item = Item.where(identifier: row['Identifier']).first
-          itemHash['identifier'] = item.identifier
+          itemHash.delete("identifier")
         else
           item = Item.new
         end
