@@ -10,7 +10,7 @@ class AssignDoiJob < ActiveJob::Base
       datacite_resourcetype: "Collection",
       datacite_title: item.title.first,
       datacite_publisher: "Special Collections, University Libraries, Virginia Tech",
-      datacite_publicationyear: (item.date_created.empty? ? "" : item.date_created)
+      datacite_publicationyear: (item.date_created.nil? ? "" : item.date_created)
      )
     doi = minted_doi.id
     id_array = item.identifier.to_a << doi
