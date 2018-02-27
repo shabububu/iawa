@@ -26,5 +26,6 @@ module Iawa
 
     # config ActiveJob backend
     config.active_job.queue_adapter = Rails.application.secrets[:active_job_backend]
+    config.middleware.insert_before Rack::Runtime, MultipartBufferSetter
   end
 end
