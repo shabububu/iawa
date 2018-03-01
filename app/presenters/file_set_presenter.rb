@@ -2,8 +2,9 @@ class FileSetPresenter < Hyrax::FileSetPresenter
   def display_image
     return nil unless FileSet.exists?(id)
     # TODO: this is slow, find a better way (perhaps index iiif url):
-    original_file = FileSet.find(id).original_file
-
+    original_file_set = FileSet.find(id)
+    return nil unless original_file_set.image?
+    original_file = original_file_set.original_file
     # TODO: We want url to be like https://libimages1.princeton.edu/loris/plum/0c%2F48%2F3j%2F48%2F8-intermediate_file.jp2/full/!200,200/0/default.jpg
     url = display_image_url(original_file)
     IIIFManifest::DisplayImage.new(url, width: 640, height: 480, iiif_endpoint: iiif_endpoint(original_file))
