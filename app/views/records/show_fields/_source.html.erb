@@ -1,6 +1,6 @@
 <% record.source.each do |src| %>
   <div class="source">
-    <%= iconify_auto_link(src) %>
+    <%= auto_link(ERB::Util.h(src.html_safe)) %>
   </div>
 <% end %>
 
