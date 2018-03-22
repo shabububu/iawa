@@ -20,7 +20,7 @@ module Hyrax
 
     # Metadata Methods
     delegate :title, :description, :creator, :source, :contributor, :subject, :publisher, :keyword, :language,
-             :embargo_release_date, :lease_expiration_date, :rights, :date_created,
+             :embargo_release_date, :lease_expiration_date, :rights, :date_created, :date,
              :resource_type, :based_near, :related_url, :identifier, 
              :bibliographic_citation, :rights_holder, :coverage, to: :solr_document
 

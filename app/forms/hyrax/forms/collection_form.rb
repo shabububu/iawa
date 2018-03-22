@@ -14,7 +14,7 @@ module Hyrax
       delegate :human_readable_type, :member_ids, to: :model
 
       self.terms = [:resource_type, :title, :creator, :description,
-                    :rights, :date_created, :language,
+                    :rights, :date_created, :date, :language,
                     :representative_id, :thumbnail_id, :identifier,
                     :visibility, :source, :bibliographic_citation, 
                     :rights_holder, :coverage]
@@ -27,7 +27,7 @@ module Hyrax
       end
 
       def primary_terms
-        [:title, :description, :creator, :source, :date_created, :rights,
+        [:title, :description, :creator, :source, :date_created, :date, :rights,
          :language, :identifier, :bibliographic_citation, :rights_holder,
          :coverage, :subject]
       end
