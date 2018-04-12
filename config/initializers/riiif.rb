@@ -34,4 +34,4 @@ Riiif::Image.authorization_service = IIIFAuthorizationService
 # Rails.cache. Some cache stores may not automatically purge expired content,
 # such as the default FileStore.
 # http://guides.rubyonrails.org/caching_with_rails.html#cache-stores
-Riiif::Engine.config.cache_duration = 30.days
+Riiif::Engine.config.cache_duration = Rails.application.secrets[:iiif][:cache_duration].to_i || 30.days
