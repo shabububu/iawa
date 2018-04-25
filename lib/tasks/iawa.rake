@@ -109,4 +109,41 @@ namespace :iawa do
       end
     end
   end
+
+  # usage: iawa:batch_upload_files['external_uploads/spec_scan.zip']
+  desc 'Batch upload from mounted file system'
+  task :batch_upload_files, [:image_zip] => [:environment] do |task, args|
+    # start where we are told to go
+    image_zip_path = args.with_defaults(image_zip: nil)[:image_zip]
+    tmp_path = Rails.root.join('tmp', image_zip_path[0...image_zip_path.rindex('/')])
+    unless image_zip_path.nil?
+      zip_file_path  = Rails.root.join(image_zip_path)
+      Zip::File.open(zip_file_path) do |zip_file|
+        zip_file.each do |entry|
+          next if entry.name =~ (/__MACOSX/ || /\.DS_Store/) || !entry.file?
+          f_path = Rails.root.join(tmp_path, entry.name)
+          FileUtils.mkdir_p(File.dirname(f_path))
+          zip_file.extract(entry, f_path) unless File.exist?(f_path)
+        end
+      end
+    end
+    user = User.find_by_email("tvj@vt.edu")
+    # get all files below
+    file_path = Rails.root.join('tmp', image_zip_path[0...image_zip_path.rindex('.')], '*')
+    files = Dir.glob(file_path)
+    uploaded_files = Array.new
+    # for each filename
+    files.each do |file_path|
+      title = File.basename(file_path)
+      id = File.basename(file_path, "_*")
+      item = Item.where(identifier: [id]).first
+      # attach file if item lacks file
+      unless item.nil? || item.has_file_titled?(title)
+        uploaded_files <<  Hyrax::UploadedFile.create(user: user, file: File.open(file_path))
+      end
+    end
+    batch_upload = BatchUpload.new({files: uploaded_files})
+    batch_upload.save
+  end
+
 end

@@ -52,6 +52,14 @@ class Item < ActiveFedora::Base
     ret_array << self.bibliographic_citation
   end
 
+  #############################
+  #
+  #
+  #############################
+  def has_file_titled?(title)
+    file_sets.any? { |fs| fs.title.first == title }
+  end # def has_file_titled?(title)
+
   private
 
     def auto_fill_fields

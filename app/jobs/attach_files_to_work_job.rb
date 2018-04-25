@@ -15,7 +15,6 @@ class AttachFilesToWorkJob < ActiveJob::Base
       actor.file_set.permissions_attributes = work.permissions.map(&:to_hash)
 
       uploaded_file.update(file_set_uri: file_set.uri)
-      File.delete(uploaded_file.file_url)
     end
   end
 

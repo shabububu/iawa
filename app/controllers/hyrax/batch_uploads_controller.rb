@@ -16,14 +16,7 @@ class Hyrax::BatchUploadsController < ApplicationController
     rescue
       uploaded_files = []
     end
-    uploaded_files.each do |uploaded_file|
-      title = uploaded_file.file.current_path.split('/').last
-      file_name = title.split('.')[0]
-      id = file_name[0...file_name.rindex('_')]
-      item = Item.where(identifier: [id]).first
-      unless item.nil? || item.file_sets.any? { |fs| fs.title.first == title }
-        AttachFilesToWorkJob.perform_later(item, [uploaded_file])
-      end
-    end
+    batch_upload = BatchUpload.new({files: uploaded_files})
+    batch_upload.save
   end
 end
