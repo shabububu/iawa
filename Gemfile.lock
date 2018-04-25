@@ -799,6 +799,8 @@ GEM
       nokogiri (~> 1.3)
     xray-rails (0.3.1)
       rails (>= 3.1.0)
+    zip-zip (0.3)
+      rubyzip (>= 1.0.0)
 
 PLATFORMS
   ruby
@@ -831,6 +833,7 @@ DEPENDENCIES
   riiif
   rsolr (>= 1.0)
   rspec-rails
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq
@@ -843,6 +846,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
   xray-rails
+  zip-zip
 
 BUNDLED WITH
    1.16.1
