@@ -69,6 +69,8 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
+    archive (0.0.6)
+      ffi (~> 1.9.3)
     arel (8.0.0)
     autoprefixer-rails (7.1.3)
       execjs
@@ -804,6 +806,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  archive
   byebug
   capybara (~> 2.15.1)
   coffee-rails (~> 4.2)
