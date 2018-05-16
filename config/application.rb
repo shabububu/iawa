@@ -26,5 +26,11 @@ module Iawa
 
     # config ActiveJob backend
     config.active_job.queue_adapter = Rails.application.secrets[:active_job_backend]
+ 
+    # Overrides
+    config.to_prepare do
+      Hyrax::HomepageController.prepend Hyrax::HomepageControllerOverride
+      Hyrax::CollectionsController.prepend Hyrax::CollectionsControllerOverride
+    end
   end
 end

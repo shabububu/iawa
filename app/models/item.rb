@@ -2,13 +2,12 @@
 #  `rails generate hyrax:work Item`
 class Item < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  include ::Hyrax::BasicMetadata
 
   validate :auto_fill_fields, on: :create
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your item must have a title.' }
-  validates :rights, presence: { message: 'Your item must have a right.' }
+  validates :rights_statement, presence: { message: 'Your item must have a rights statement.' }
   validates :identifier, presence: { message: 'Your item must have an identifier.' }
   validates :rights_holder, presence: { message: 'Your item must have a rights holder.' }
 
@@ -23,6 +22,8 @@ class Item < ActiveFedora::Base
   end
 
   belongs_to :item_set, predicate: ActiveFedora::RDF::Fcrepo::RelsExt.isPartOf
+
+  include ::Hyrax::BasicMetadata
 
   # class setter  
   self.human_readable_type = 'Item'
@@ -47,7 +48,7 @@ class Item < ActiveFedora::Base
     ret_array << self.tags.join('~')
     ret_array << self.related_url.join('~')
     ret_array << self.contributor('~')
-    ret_array << self.rights
+    ret_array << self.rights_statement
     ret_array << self.rights_holder
     ret_array << self.bibliographic_citation
   end
@@ -66,7 +67,7 @@ class Item < ActiveFedora::Base
       rights_statement = "Permission to publish material from the "
       rights_statement += self.title.first || String.new
       rights_statement += " must be obtained from University Libraries Special Collections, Virginia Tech."
-      self.rights = rights_statement
+      self.rights_statement = rights_statement
       self.rights_holder = "Special Collections, University Libraries, Virginia Tech"
       bibli_citation = "Researchers wishing to cite this collection should include the following information: - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
       self.bibliographic_citation = bibli_citation

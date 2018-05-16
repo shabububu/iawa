@@ -1,7 +1,5 @@
 module Hyrax
-  class CollectionsController < ApplicationController
-    include CollectionsControllerBehavior
-    include BreadcrumbsForCollections
+  module CollectionsControllerOverride
 
     skip_load_and_authorize_resource :only => [:export_metadata]
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202180941) do
+ActiveRecord::Schema.define(version: 20180510210836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(version: 20180202180941) do
   create_table "checksum_audit_logs", id: :serial, force: :cascade do |t|
     t.string "file_set_id"
     t.string "file_id"
-    t.string "version"
-    t.integer "pass"
+    t.string "checked_uri"
     t.string "expected_result"
     t.string "actual_result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "passed"
+    t.index ["checked_uri"], name: "index_checksum_audit_logs_on_checked_uri"
     t.index ["file_set_id", "file_id"], name: "by_file_set_id_and_file_id"
   end
 
@@ -112,6 +113,20 @@ ActiveRecord::Schema.define(version: 20180202180941) do
     t.boolean "enabled", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "job_io_wrappers", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "uploaded_file_id"
+    t.string "file_set_id"
+    t.string "mime_type"
+    t.string "original_name"
+    t.string "path"
+    t.string "relation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uploaded_file_id"], name: "index_job_io_wrappers_on_uploaded_file_id"
+    t.index ["user_id"], name: "index_job_io_wrappers_on_user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
@@ -493,6 +508,7 @@ ActiveRecord::Schema.define(version: 20180202180941) do
     t.string "provider", null: false
     t.string "uid", null: false
     t.boolean "guest", default: false
+    t.string "preferred_locale"
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["uid"], name: "index_users_on_uid"
   end

@@ -8,7 +8,7 @@ module Hyrax
 
     def secondary_terms
       terms - primary_terms - 
-       [:rights, :visibility_during_embargo, :embargo_release_date,
+       [:rights_statement, :visibility_during_embargo, :embargo_release_date,
            :visibility_after_embargo, :visibility_during_lease,
            :lease_expiration_date, :visibility_after_lease, :visibility,
            :thumbnail_id, :representative_id, :ordered_member_ids,
