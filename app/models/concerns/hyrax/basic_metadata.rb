@@ -1,3 +1,6 @@
+# Overrides Hyrax Gem 2.0.0 
+#   hyrax/app/models/concerns/hyrax/basic_metadata.rb
+
 module Hyrax
   module BasicMetadata
     extend ActiveSupport::Concern
@@ -14,6 +17,7 @@ module Hyrax
       property :part_of, predicate: ::RDF::Vocab::DC.isPartOf do |index|
         index.as :stored_searchable, :facetable
       end
+
       property :resource_type, predicate: ::RDF::Vocab::DC11.type do |index|
         index.as :stored_searchable, :facetable
       end
@@ -30,7 +34,15 @@ module Hyrax
       property :tags, predicate: ::RDF::Vocab::DC11.relation do |index|
         index.as :stored_searchable, :facetable
       end
-      property :rights, predicate: ::RDF::Vocab::DC11.rights, multiple: false do |index|
+
+      # Keyword Property removed
+
+      # Used for a license
+      property :license, predicate: ::RDF::Vocab::DC.rights , multiple: false do |index|
+        index.as :stored_searchable
+      end
+      # This is for the rights statement
+      property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
         index.as :stored_searchable
       end
       property :publisher, predicate: ::RDF::Vocab::DC11.publisher do |index|
@@ -69,6 +81,12 @@ module Hyrax
       property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: false do |index|
         index.as :stored_searchable
       end
+ 
+      id_blank = proc { |attributes| attributes[:id].blank? }
+
+      class_attribute :controlled_properties
+      self.controlled_properties = [:based_near]
+      accepts_nested_attributes_for :based_near, reject_if: id_blank, allow_destroy: true
     end
   end
 end
