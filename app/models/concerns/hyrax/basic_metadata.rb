@@ -42,7 +42,7 @@ module Hyrax
         index.as :stored_searchable
       end
       # This is for the rights statement
-      property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
+      property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple:false do |index|
         index.as :stored_searchable
       end
       property :publisher, predicate: ::RDF::Vocab::DC11.publisher do |index|
