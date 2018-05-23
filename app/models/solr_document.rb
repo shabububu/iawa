@@ -67,7 +67,7 @@ class SolrDocument
   end
 
   def keyword
-    fetch(Solrizer.solr_name('tags'), [])
+    fetch(Solrizer.solr_name('keyword'), [])
   end 
 
   def location

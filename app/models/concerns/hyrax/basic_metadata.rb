@@ -27,6 +27,8 @@ module Hyrax
       property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
         index.as :stored_searchable, :facetable
       end
+      # TODO: Remove :keyword eventually, not necessary; putting back for debug reasons
+      property :keyword, predicate: ::RDF::Vocab::DC11.relation
       property :description, predicate: ::RDF::Vocab::DC11.description do |index|
         index.type :text
         index.as :stored_searchable
