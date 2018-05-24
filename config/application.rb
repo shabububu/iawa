@@ -30,6 +30,7 @@ module Iawa
     # Overrides
     config.to_prepare do
       Hyrax::HomepageController.prepend Hyrax::HomepageControllerOverride
+      Hyrax::BatchUploadsController.prepend Hyrax::BatchUploadsControllerOverride
       #Hyrax::CollectionsController.prepend Hyrax::CollectionsControllerOverride
     end
   end
