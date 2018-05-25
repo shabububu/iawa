@@ -29,7 +29,11 @@ class SolrDocument
   def coverage
     self[Solrizer.solr_name('coverage')]
   end
-  
+ 
+  def license
+    first(Solrizer.solr_name('license'))
+  end
+ 
   def rights_statement
     first(Solrizer.solr_name('rights_statement'))
   end

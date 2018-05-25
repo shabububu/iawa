@@ -42,7 +42,7 @@ module Hyrax
 
       # Keyword Property removed
 
-      # Used for a license
+      # Used for a license - for the IAWA project, this will be relabeled to "Rights"
       property :license, predicate: ::RDF::Vocab::DC.rights , multiple: false do |index|
         index.as :stored_searchable
       end

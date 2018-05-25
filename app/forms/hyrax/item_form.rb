@@ -7,11 +7,11 @@ module Hyrax
                    :bibliographic_citation, :rights_holder, :format,
                    :related_url, :contributor]
     self.terms -= [:keyword, :license, :based_near]
-    self.required_fields = [:title, :rights_statement, :identifier, :rights_holder]
+    self.required_fields = [:title, :license, :identifier, :rights_holder]
 
     def primary_terms
       [:title, :tags, :description, :creator, :source, :date_created, :date,
-      :rights_statement, :language, :resource_type, :identifier, :coverage, :location,
+      :license, :language, :resource_type, :identifier, :coverage, :location,
       :medium, :bibliographic_citation, :rights_holder, :format, :related_url,
       :contributor]
     end
