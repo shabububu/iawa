@@ -28,9 +28,25 @@ module Hyrax
         index.as :stored_searchable, :facetable
       end
 
+      # TODO Ideally, we would just remove the keyword property, but to do so needs more 
+      #      investigation.
+      #
       # NOTE 2018-05-24: :keyword put back in after upgrade to Hyrax 2.0.0
       #                  Removing it caused errors that were difficult to trace
-      property :keyword, predicate: ::RDF::Vocab::DC11.relation
+      #      2018-05-25: The predicate has been changed from DC11.relation
+      #                  to DC.relation so that it does not interfere with the
+      #                  :tags property
+      # 
+      #                  Debugging notes - When the ItemActor's
+      #                  apply_save_data_to_curation_concern(env) is called,
+      #                  env.attributes.keyword exists, 
+      #                  but env.curation_concern.attributes.keyword does not.
+      #                  The resulting error is something like the following:
+      #                    *** NoMethodError Exception: undefined method `keyword' for #<Hash:0x00007f6e827a9700>
+      #                  This will take some time to figure out.
+      #                  For now, we'll go with the approach of renaming the predicate.
+      #                  We do not plan to use the keyword property.
+      property :keyword, predicate: ::RDF::Vocab::DC.relation
 
       property :description, predicate: ::RDF::Vocab::DC11.description do |index|
         index.type :text
