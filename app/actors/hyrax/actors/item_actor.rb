@@ -5,17 +5,18 @@ module Hyrax
     class ItemActor < Hyrax::Actors::BaseActor
       protected
 
-        def apply_save_data_to_curation_concern(attributes)
-          attributes[:title] = Array(attributes[:title]) if attributes.key? :title
-          remove_blank_attributes!(attributes)
-          curation_concern.attributes = attributes
-          curation_concern.date_modified = TimeService.time_in_utc
-          # update rights and bibliographic_citation using the collection's title
-          collection_ids = curation_concern.in_collection_ids
+        def apply_save_data_to_curation_concern(env)
+          env.attributes[:title] = Array(env.attributes[:title]) if env.attributes.key? :title
+          remove_blank_attributes!(env.attributes)
+          env.curation_concern.date_modified = TimeService.time_in_utc
+          env.curation_concern.attributes = env.attributes
+          #env.curation_concern.attributes = clean_attributes(env.attributes)
+          # update rights (a.k.a. license) and bibliographic_citation using the collection's title
+          collection_ids = env.curation_concern.in_collection_ids
           unless collection_ids.empty?
             collection = ::Collection.find(collection_ids.first)
-            curation_concern.rights = collection.rights
-            curation_concern.bibliographic_citation = collection.bibliographic_citation
+            env.curation_concern.license = collection.license
+            env.curation_concern.bibliographic_citation = collection.bibliographic_citation
           end
         end
     end
