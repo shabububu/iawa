@@ -1,7 +1,10 @@
 module Hyrax
   module CollectionsControllerOverride
 
-    skip_load_and_authorize_resource :only => [:export_metadata]
+      def self.prepended(base)
+        base.skip_load_and_authorize_resource :only => [:export_metadata]
+      end
+
 
     def export_metadata
       @collection = Collection.find(params[:id])

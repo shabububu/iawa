@@ -20,15 +20,15 @@ module Hyrax
 
     # Metadata Methods
     delegate :title, :description, :creator, :source, :contributor, :subject, :publisher, :keyword, :language,
-             :embargo_release_date, :lease_expiration_date, :rights, :date_created, :date,
-             :resource_type, :based_near, :related_url, :identifier, 
+             :embargo_release_date, :lease_expiration_date, :license, :date_created, :date,
+             :resource_type, :based_near, :related_url, :identifier, :thumbnail_path, 
              :bibliographic_citation, :rights_holder, :coverage, to: :solr_document
 
     # Terms is the list of fields displayed by
     # app/views/collections/_show_descriptions.html.erb
     def self.terms
       [:total_items, :size, :resource_type, :creator, :source, :contributor, :keyword,
-       :rights, :publisher, :date_created, :subject, :language, :identifier,
+       :license, :publisher, :date_created, :subject, :language, :identifier,
        :bibliographic_citation, :rights_holder, :coverage,
        :based_near, :related_url]
     end
