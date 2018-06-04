@@ -2,17 +2,23 @@
 class Collection < ActiveFedora::Base
   include ::Hyrax::CollectionBehavior
   # You can replace these metadata if they're not suitable
-  include Hyrax::BasicMetadata
-  validates :rights, presence: { message: 'Your collection must have a right.' }
+  validates :license, presence: { message: 'Your collection must have rights.' }
   validates :identifier, presence: { message: 'Your collection must have an identifier.' }
   validates :rights_holder, presence: { message: 'Your collection must have a rights holder.' }
+
+
+  # The include (include ::Hyrax::BasicMetadata) must appear
+  # below custom predicate definitions as of Hyrax 2.0.0
+  include ::Hyrax::BasicMetadata
+
+  self.indexer = Hyrax::CollectionWithBasicMetadataIndexer
 
   # Add members using the members association.
   def add_members(new_member_ids)
     return if new_member_ids.nil? || new_member_ids.empty?
     items = ActiveFedora::Base.find(new_member_ids)
     items.each do |item|
-      item.rights = self.rights
+      item.license = self.license
       item.bibliographic_citation = self.bibliographic_citation
       item.save
     end
