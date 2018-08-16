@@ -18,7 +18,6 @@
     <%= render 'metadata', presenter: @presenter %>
   </div>
   <div class="col-sm-4">
-    <%= render "show_actions", presenter: @presenter %>
     <%= t('.last_modified', value: @presenter.date_modified) %>
     <%= render 'social_media' %>
     <%= render 'citations', presenter: @presenter %>
