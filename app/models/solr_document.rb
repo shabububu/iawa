@@ -29,9 +29,13 @@ class SolrDocument
   def coverage
     self[Solrizer.solr_name('coverage')]
   end
-  
-  def rights
-    first(Solrizer.solr_name('rights'))
+ 
+  def license
+    first(Solrizer.solr_name('license'))
+  end
+ 
+  def rights_statement
+    first(Solrizer.solr_name('rights_statement'))
   end
 
   def date
@@ -67,7 +71,7 @@ class SolrDocument
   end
 
   def keyword
-    fetch(Solrizer.solr_name('tags'), [])
+    fetch(Solrizer.solr_name('keyword'), [])
   end 
 
   def location

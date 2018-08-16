@@ -26,5 +26,18 @@ module Iawa
 
     # config ActiveJob backend
     config.active_job.queue_adapter = Rails.application.secrets[:active_job_backend]
+ 
+    # Overrides
+    config.to_prepare do
+      # TEMP Solution until LIBTD-1419 is resolved.
+      Hyrax::CollectionType.const_set('USER_COLLECTION_DEFAULT_TITLE','User Collection')
+      Hyrax::CollectionType.const_set('ADMIN_SET_DEFAULT_TITLE','Admin Set')
+
+      Hyrax::HomepageController.prepend Hyrax::HomepageControllerOverride
+      Hyrax::BatchUploadsController.prepend Hyrax::BatchUploadsControllerOverride
+      Hyrax::CollectionsController.prepend Hyrax::CollectionsControllerOverride
+      Hyrax::Forms::CollectionForm.prepend Hyrax::Forms::CollectionFormOverride
+      Hyrax::CollectionPresenter.prepend Hyrax::CollectionPresenterOverride
+    end
   end
 end

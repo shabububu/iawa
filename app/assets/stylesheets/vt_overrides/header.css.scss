@@ -1,11 +1,17 @@
 /* VT specific styles */
 @import 'colors';
 
+/* TODO: REMOVE once layout has been finalized. Temporary fix to prevent obstruction of views during Hyrax 2.1 Migration */
+body.dashboard {
+  padding-top: 165px;
+}
+
 #masthead.navbar-inverse {
   background-color: $hokie-maroon;
   border-bottom-color: $hokie-orange;
   height: 165px;
 }
+
 a#logo.navbar-brand {
   font-size: 26px;
   line-height: 26px;

@@ -23,8 +23,9 @@ en:
           identifier_tesim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
+          license_tesim: Rights
           publisher_tesim: Publisher
-          rights_tesim: Rights
+          rights_statement_tesim: Rights Statement
           subject_tesim: Subject
         show:
           based_near_tesim: Location
@@ -38,8 +39,9 @@ en:
           identifier_tesim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
+          license_tesim: Rights
           publisher_tesim: Publisher
-          rights_tesim: Rights
+          rights_statement_tesim: Rights Statement
           subject_tesim: Subject
           title_tesim: Title
   hyrax:
@@ -146,3 +148,6 @@ en:
         language: "The language of the item's content."
         publisher: "The person or group making the item available. Generally this is the institution."
         rights: "Licensing and distribution information governing access to the item. Select from the provided drop-down list."
+    labels:
+      defaults:
+        license: "Rights"

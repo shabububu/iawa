@@ -1,8 +1,0 @@
-en:
-  hyrax:
-    icons:
-      item_set:     'fa fa-file-text-o'
-    select_type:
-      item_set:
-        name:               "Item Set"
-        description:        "Item set works"

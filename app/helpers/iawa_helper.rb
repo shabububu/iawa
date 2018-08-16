@@ -1,7 +1,7 @@
 module IawaHelper
 
-  def rights_statement_link(rights)
-    link_to rights, hyrax.terms_path
+  def license_link(license)
+    link_to license, hyrax.terms_path
   end
 
   def rights_holder_link(rights_holder)

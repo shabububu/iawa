@@ -6,12 +6,12 @@ module Hyrax
     self.terms += [:tags, :resource_type, :date, :coverage, :location, :medium,
                    :bibliographic_citation, :rights_holder, :format,
                    :related_url, :contributor]
-    self.terms -= [:keyword]
-    self.required_fields = [:title, :rights, :identifier, :rights_holder]
+    self.terms -= [:keyword, :license, :based_near]
+    self.required_fields = [:title, :license, :identifier, :rights_holder]
 
     def primary_terms
       [:title, :tags, :description, :creator, :source, :date_created, :date,
-      :rights, :language, :resource_type, :identifier, :coverage, :location,
+      :license, :language, :resource_type, :identifier, :coverage, :location,
       :medium, :bibliographic_citation, :rights_holder, :format, :related_url,
       :contributor]
     end
