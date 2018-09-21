@@ -1,6 +1,27 @@
+require 'importer'
+
 class BatchImport
   include ActiveModel::Model
-  attr_accessor :file, :depositor, :base_url
+
+  attr_accessor :files_directory, :manifest_file, :depositor
+
+  CONFIG_FILE = File.join(Rails.root, 'config', 'batch_import.yml')
+
+  validates_presence_of :manifest_file, :files_directory
+  validate :manifest_file_must_exist, if: Proc.new { manifest_file.present? }
+  validate :files_directory_must_exist, if: Proc.new { files_directory.present? }
+  validate :manifest_contents_must_be_valid, if: Proc.new { manifest_file_exists? && files_directory.present? }
+  validate :depositor_must_exist, if: Proc.new { depositor.present? }
+  validate :parent_collection_must_exist, if: Proc.new { files_directory.present? }
+
+  def self.basepath
+    if File.file?(CONFIG_FILE)
+      if (config = YAML.load(File.read(CONFIG_FILE))) && config.is_a?(Hash)
+        basepath = config.deep_symbolize_keys[:basepath]
+      end
+    end
+    basepath ||= File.join(Rails.root, 'tmp', 'imports')
+  end
 
   def initialize(attributes = {})
     attributes.each { |name, value| send("#{name}=", value) }
@@ -10,88 +31,65 @@ class BatchImport
     false
   end
 
-  def save
-    if imported_items.map(&:valid?).all?
-      imported_items.each {|i| i.visibility = "open" }
-      imported_items.each(&:save!)
-      imported_items.each do |item|
-        unless item.identifier.to_a.any? { |id| /\A#{Ezid::Client.config.default_shoulder}/ =~ id}
-          AssignDoiJob.perform_later(item.id, base_url)
-        end
-      end
-      true
-    else
-      imported_items.each_with_index do |item, idx|
-        item.errors.full_messages.each do |message|
-          errors.add :base, "Row #{idx+2}: #{message}"
-        end
-      end
-      false
+  def parser
+    Importer::CSVParser.new(manifest_file_full_path)
+  end
+
+  def collection_id
+    collection, id = parent_collection
+    collection.id unless collection.nil?
+  end
+
+  def parent_collection
+    c_n = files_directory.split("/").first
+    collection_identifier = c_n[0...c_n.rindex('_')].gsub('_', '-') if c_n.include?('_')
+    return Collection.where(identifier: [collection_identifier]).first,  collection_identifier
+  end
+
+  def manifest_file_exists?
+    manifest_file.present? ? File.file?(manifest_file_full_path) : false
+  end
+ 
+  def manifest_file_full_path
+    File.join(self.class.basepath, manifest_file)
+  end
+
+  def files_directory_full_path
+    File.join(self.class.basepath, files_directory)
+  end
+
+  def manifest_file_must_exist
+    unless manifest_file_exists?
+      errors.add(:manifest_file, I18n.t('iawa.does_not_exist', target: manifest_file_full_path))
     end
   end
 
-  def imported_items
-    @imported_items ||= load_imported_items
-  end
-
-  def load_imported_items
-    unless File.extname(file.original_filename) == ".csv"
-      raise "Unknown file type: #{file.original_filename}"
-    else
-      imported_items = Array.new
-      CSV.foreach(file.path, headers: true) do |row|
-        itemHash = processRow(row)
-        if item = Item.where(identifier: row['Identifier']).first
-          itemHash.delete("identifier")
-        else
-          item = Item.new
-        end
-        if collection_id = itemHash.delete("collection_id")
-          if collection = Collection.where(identifier: [collection_id]).first
-            unless item.member_of_collection_ids.include?(collection.id)
-              item.member_of_collections << collection
-            end
-          end
-        end
-        # additemtocollection
-        item.attributes = itemHash
-        item.apply_depositor_metadata(depositor)
-        imported_items << item
-      end
-      imported_items
+  def files_directory_must_exist
+    unless Dir.exist?(files_directory_full_path)
+      errors.add(:files_directory, I18n.t('iawa.does_not_exist', target: files_directory_full_path))
     end
   end
 
-  def processRow(row)
-    itemHash = Hash.new
-    row.each do |header, field|
-      unless field.blank?
-        case header
-        when 'Collection Identifier'
-          itemHash['collection_id'] = field
-        when 'Circa'
-          if field == 'yes'
-            itemHash['date_created'] = "Circa "  
-          end
-        when 'Start Date'
-          itemHash['date_created'] ||= "" 
-          itemHash['date_created'] += field
-        when 'End Date'
-          itemHash['date'] = field
-        when 'Type'
-          key = 'resource_type'
-          itemHash[key] = field.split('~')
-        when 'Is Part Of'
-          key = 'location'
-          itemHash[key] = field.split('~')
-        when 'Related URL'
-          itemHash['related_url'] = field.split('~')
-        else
-          key = header.downcase
-          itemHash[key] = field.split('~')
-        end
+  def manifest_contents_must_be_valid
+    manifest = Importer::CSVManifest.new(manifest_file_full_path, files_directory_full_path)
+    unless manifest.valid?
+      manifest.errors.full_messages.each do |msg|
+        errors.add(:manifest_file, msg)
       end
     end
-    itemHash
   end
+
+   def depositor_must_exist
+    unless User.find_by_user_key(depositor).present?
+      errors.add(:depositor, "#{depositor} does not exist")
+    end
+  end
+
+  def parent_collection_must_exist
+    result, collection_identifier = parent_collection
+    if result.nil?
+      errors.add(:parent_collection, I18n.t('iawa.batch_import.parent_collection_does_not_exist', identifier: collection_identifier))
+    end
+  end
+
 end

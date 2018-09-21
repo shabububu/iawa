@@ -26,7 +26,9 @@ module Iawa
 
     # config ActiveJob backend
     config.active_job.queue_adapter = Rails.application.secrets[:active_job_backend]
- 
+
+    config.autoload_paths += %W(#{config.root}/lib) 
+
     # Overrides
     config.to_prepare do
       # TEMP Solution until LIBTD-1419 is resolved.

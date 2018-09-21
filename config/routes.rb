@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount Riiif::Engine => '/image-service', as: 'riiif'
 
   resources :controlled_vocabs
+  resources :batch_imports, only: [:new, :create], controller: 'batch_imports'
   get 'collections/:id/export_metadata', to: 'hyrax/collections#export_metadata', as: 'export_metadata_collection'
   get 'dashboard/admin_metadata_export', to: 'dashboard#admin_metadata_export', as: 'admin_metadata_export'
   resources :batch_imports, only: [:new, :create], controller: 'batch_imports'

@@ -213,6 +213,7 @@ Hyrax.config do |config|
   # mount point.
   #
   # config.whitelisted_ingest_dirs = []
+  config.whitelisted_ingest_dirs = [ File.join(Rails.root, 'tmp', 'imports') ]
 end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
