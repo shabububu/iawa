@@ -44,6 +44,11 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+
+  # Additional testing/debugging gems (Still trying things out)
+  gem 'chromedriver-helper'
+  gem 'factory_bot'
+  gem 'database_cleaner'
 end
 
 group :development do
