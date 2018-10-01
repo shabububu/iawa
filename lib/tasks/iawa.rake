@@ -100,7 +100,7 @@ namespace :iawa do
         c_v.image_filename = name.downcase.gsub(/[\W_]/,'') + '.jpg'
       end
     end
-    keyword_names = ["11 to 20 stories", "3 to 5 stories", "6 to 10 stories", "Associations and committees",
+    tags_names = ["11 to 20 stories", "3 to 5 stories", "6 to 10 stories", "Associations and committees",
                      "Awards", "Biographical information", "Commercial and Office", "Educational and research",
                      "Faculty papers", "Healthcare", "Historic preservation", "Industrial", "Interior Design",
                      "Landscape Architecture", "Office records", "Personal papers", "Portrait",
@@ -108,9 +108,9 @@ namespace :iawa do
                      "Reference files", "Religious building spaces", "Renovations", "Residential",
                      "Residential-Housing development", "Residential-Multi-family", "Residential-Single-family",
                      "Single-family", "Single-story", "Student work", "Travel", "Two-story", "Urban Design"]
-    keyword_names.each do |name|
+    tags_names.each do |name|
       ControlledVocab.find_or_create_by(name: name) do |c_v|
-        c_v.field = 'keyword_sim'
+        c_v.field = 'tags_sim'
       end
     end
   end
