@@ -45,8 +45,6 @@ module Importer
           parsedHash[:date] = val
         when 'Type'
           extract_multi_value_field(header, val, parsedHash, key = 'resource_type')
-        when 'Tags'
-          extract_multi_value_field(header, val, parsedHash, key = 'keyword')
         when 'Is Part Of'
           extract_multi_value_field(header, val, parsedHash, key = 'location')
         when 'Related URL'

@@ -8,7 +8,7 @@ module Importer
     validate :controlled_vocab_values
 
     def self.controlled_vocab_fields
-      ["medium", "resource_type", "keyword"]
+      ["medium", "resource_type", "tags"]
     end
 
     def self.controlled_vocab_headers
