@@ -3,8 +3,28 @@ Riiif::Image.file_resolver = Riiif::HTTPFileResolver.new
 
 # This tells RIIIF how to resolve the identifier to a URI in Fedora
 Riiif::Image.file_resolver.id_to_uri = lambda do |id|
-  ActiveFedora::Base.id_to_uri(CGI.unescape(id)).tap do |url|
-    logger.info "Riiif resolved #{id} to #{url}"
+  # Notes:
+  #   In this, we should be able to resolve to simple http urls or paths on the local file system
+  #     Trying something like the following resulted in an ssl error. Ex:
+  #       "https://iawa.dld.lib.vt.edu/downloads/p8418n20k?file=jpg"
+  #     Non-https works fine. Ex:
+  #       "http://www.asobibox.com/images/Hangeul_New_Version.jpg"
+  #     Local file paths work fine. Ex:
+  #       "/var/local/hydra/iawa/tmp/derivatives/0z/70/8w/40/c-jpg.jpg"
+  #
+  logger.info "Riiif::Image.file_resolver.id_to_uri resolving id = #{id}"
+  begin
+    fileset_id = id.split("/").first
+    logger.info "Riiif::Image.file_resolver.id_to_uri Attempting to resolve to FileSet derivative, where FileSet id = #{fileset_id}"
+    path = Hyrax::DerivativePath.derivative_path_for_reference(FileSet.find(fileset_id), "jpg")
+    raise "Nil derived path" if ! File.file? path
+    logger.info "Riiif::Image.file_resolver.id_to_uri Path resolved to #{path}"
+    path
+  rescue
+    logger.info "Riiif::Image.file_resolver.id_to_uri Error resolving FileSet id = #{fileset_id}. Attempting to resolve to ActiveFedora uri instead."
+    ActiveFedora::Base.id_to_uri(CGI.unescape(id)).tap do |url|
+      logger.info "Riiif resolved #{id} to #{url}"
+    end
   end
 end
 
