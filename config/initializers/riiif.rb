@@ -17,11 +17,11 @@ Riiif::Image.file_resolver.id_to_uri = lambda do |id|
     fileset_id = id.split("/").first
     logger.info "Riiif::Image.file_resolver.id_to_uri Attempting to resolve to FileSet derivative, where FileSet id = #{fileset_id}"
     path = Hyrax::DerivativePath.derivative_path_for_reference(FileSet.find(fileset_id), "jpg")
-    raise "Nil derived path" if ! File.file? path
+    raise "Path to derivative does not exist" if ! File.file? path
     logger.info "Riiif::Image.file_resolver.id_to_uri Path resolved to #{path}"
     path
   rescue
-    logger.info "Riiif::Image.file_resolver.id_to_uri Error resolving FileSet id = #{fileset_id}. Attempting to resolve to ActiveFedora uri instead."
+    logger.info "Riiif::Image.file_resolver.id_to_uri Unable to find jpg derivative for FileSet id = #{fileset_id}. Attempting to resolve using ActiveFedora uri instead."
     ActiveFedora::Base.id_to_uri(CGI.unescape(id)).tap do |url|
       logger.info "Riiif resolved #{id} to #{url}"
     end
