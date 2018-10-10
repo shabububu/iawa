@@ -40,6 +40,9 @@ module Iawa
       Hyrax::CollectionsController.prepend Hyrax::CollectionsControllerOverride
       Hyrax::Forms::CollectionForm.prepend Hyrax::Forms::CollectionFormOverride
       Hyrax::CollectionPresenter.prepend Hyrax::CollectionPresenterOverride
+      Hyrax::FileSetDerivativesService.prepend Hyrax::FileSetDerivativesServiceOverride
+
+      IIIFManifest::ManifestBuilder::CanvasBuilder.prepend IIIFManifest::ManifestBuilder::CanvasBuilderOverride
     end
   end
 end
