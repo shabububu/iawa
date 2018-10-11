@@ -9,8 +9,33 @@
       "i18nPath":"",
       "imagesPath":"",
       "data":[{"manifestUri":"<%= @manifest_url -%>.json","locale":"en"}],
-      "windowObjects":[{"loadedManifest":"<%= @manifest_url -%>.json","viewType":"ImageView"}],
-      "showAddFromURLBox": false
+      "windowObjects":[{"loadedManifest":"<%= @manifest_url -%>.json","viewType":"BookView"}],
+      "showAddFromURLBox": false,
+      "mainMenuSettings" : {
+        "buttons": { layout: false, fullScreenViewer: false},
+        "userButtons": [
+
+          {"label": "Search",
+           "iconClass": "fa fa-search",
+           "attributes": { "id": "search", "href": "#no-op"}},
+          {"label": "View Text",
+           "iconClass": "fa fa-font",
+           "attributes": { "id": "viewtext", "href": "#no-op"}},
+          {"label": "Cite",
+           "iconClass": "fa fa-quote-left",
+           "attributes": { "id": "cite", "href": "#no-op"}},
+          {"label": "Download",
+           "iconClass": "fa fa-download",
+           "attributes": { "id": "download", "href": "#no-op"}},
+          {"label": "Item Record",
+           "iconClass": "fa fa-link",
+           "attributes": { "id": "item-record", "href": "#no-op"}},
+          {"label": "Help",
+           "iconClass": "fa fa-question-circle",
+           "attributes": { "id": "help", "href": "#no-op"}},
+  
+        ]
+      }
     })
   });
 </script>
