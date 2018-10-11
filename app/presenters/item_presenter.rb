@@ -22,6 +22,22 @@ class ItemPresenter < Hyrax::WorkShowPresenter
     ((super || []) rescue []).sort_by {|fs| fs.title.first}
   end
 
+  def ranges
+    [ManifestRange.new(
+       label: "List of Items",
+       ranges: [ManifestRange.new(label: "Item Files",
+                file_set_presenters: file_set_presenters)])]
+  end
+
+  class ManifestRange
+    attr_reader :label, :ranges, :file_set_presenters
+    def initialize(label:, ranges: [], file_set_presenters: [])
+      @label = label
+      @ranges = ranges
+      @file_set_presenters = file_set_presenters
+    end
+  end
+
   def manifest_url
     manifest_helper.polymorphic_url([:manifest, self])
   end
