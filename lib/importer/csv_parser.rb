@@ -64,7 +64,7 @@ module Importer
     end
 
     def as_csv_table
-      @csv_table ||= CSV.read(file_name, headers: true)
+      @csv_table ||= CSV.read(file_name, 'r:bom|utf-8', headers: true)
     end
   end
 end
