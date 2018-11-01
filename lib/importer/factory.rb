@@ -6,7 +6,6 @@ module Importer
       autoload :CollectionFactory
       autoload :ItemFactory
       autoload :ObjectFactory
-      autoload :WithAssociatedCollection
     end
 
     # @param [#to_s] First (Xxx) portion of an "XxxFactory" constant
