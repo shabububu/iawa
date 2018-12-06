@@ -1,3 +1,4 @@
+# coding: utf-8
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -94,8 +95,10 @@ Rails.application.configure do
       { "params" => params }
     end
   else
-    # Create a standard logger that writes to log/production.log and rotates them daily
-    config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), "daily")
+    # Create a standard logger that writes to log/production.log and rotates them.
+    # This ages the logfile once it reaches a certain size. Leave 12 “old” log files where 
+    # each file is about 10485760 bytes. See LIBTD-1540 for more information.
+    config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), 12, 10485760)
     config.log_level = :warn
   end
   # Do not dump schema after migrations.
