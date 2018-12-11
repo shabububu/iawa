@@ -1,1 +1,1 @@
-basepath: /var/local/hydra/iawa/tmp/imports
+basepath: <%= Rails.application.secrets[:batch_import_basepath] %>

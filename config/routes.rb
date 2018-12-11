@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  browse_everything_constraint = lambda do |request|
+    request.env['warden'].authenticate? && request.env['warden'].user.admin?
+  end
+  constraints browse_everything_constraint do
+    mount BrowseEverything::Engine => '/browse'
+  end
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Riiif::Engine => '/image-service', as: 'riiif'
