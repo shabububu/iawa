@@ -218,6 +218,8 @@ GEM
     execjs (2.7.0)
     ezid-client (1.7.1)
       hashie (~> 3.4, >= 3.4.3)
+    factory_bot (4.11.1)
+      activesupport (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
@@ -820,6 +822,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   ezid-client
+  factory_bot
   fcrepo_wrapper
   gelf
   hydra-role-management
@@ -855,4 +858,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.17.1
+   2.0.1

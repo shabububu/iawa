@@ -11,22 +11,22 @@ RSpec.describe Item do
       expect(subject.errors.messages[:title]).to eq(["Your item must have a title."])
     end
 
-    before { subject.rights = nil }
+    before { subject.license = nil }
     it "ensures the item has a right" do
       expect(subject).not_to be_valid
-      expect(subject.errors.messages[:rights]).to eq("Your item must have the rights.")
+      expect(subject.license).to eq("Permission to publish material from the  must be obtained from University Libraries Special Collections, Virginia Tech.")
     end
 
     before { subject.identifier = nil }
     it "ensures the item has an identifier" do
       expect(subject).not_to be_valid
-      expect(subject.errors.messages[:identifier]).to eq("Your item must have an identifier.")
+      expect(subject.errors.messages[:identifier]).to eq(["Your item must have an identifier."])
     end
 
     before { subject.rights_holder = nil }
     it "ensures the item has a rights holder" do
       expect(subject).not_to be_valid
-      expect(subject.errors.messages[:rights_holder]).to eq("Your item must have a rights holder.")
+      expect(subject.rights_holder).to eq("Special Collections, University Libraries, Virginia Tech")
     end
   end
 
@@ -43,8 +43,8 @@ RSpec.describe Item do
       expect(subject.part_of).to eq ['foo', 'bar']
     end
     it "has dc identifier properties" do
-      subject.identifier = 'foo'
-      expect(subject.identifier).to eq 'foo'
+      subject.identifier = ['foo']
+      expect(subject.identifier).to eq ['foo']
     end
     it "has dc medium properties" do
       subject.medium = ['foo', 'bar']
@@ -71,7 +71,7 @@ RSpec.describe Item do
       expect(subject).to respond_to(:creator)
       expect(subject).to respond_to(:source)
       expect(subject).to respond_to(:date)
-      expect(subject).to respond_to(:rights)
+      expect(subject).to respond_to(:license)
       expect(subject).to respond_to(:language)
       expect(subject).to respond_to(:resource_type)
       expect(subject).to respond_to(:identifier)

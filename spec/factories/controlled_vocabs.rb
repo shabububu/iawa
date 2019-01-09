@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :controlled_vocab do
     field "MyString"
     name "MyString"

@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :item, aliases: [:private_item], class: Item do
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
     end
 
     title ["Test title"]
@@ -21,7 +21,7 @@ FactoryGirl.define do
 
     factory :item_with_one_file do
       before(:create) do |item, evaluator|
-        item.ordered_members << FactoryGirl.create(:file_set, user: evaluator.user, title: ['A Contained FileSet'], label: 'filename.pdf')
+        item.ordered_members << FactoryBot.create(:file_set, user: evaluator.user, title: ['A Contained FileSet'], label: 'filename.pdf')
       end
     end
   end
