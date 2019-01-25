@@ -47,8 +47,8 @@ To modify your homepage carousel images, do the following:
   carousel_pkg: 'carousel.tar.gz'
   ```
 
-  This package will need to be created and copied into `ansible\local_files`. This package will be unpacked on your VM in `app/assets/images/vtul/`.
-  The current setup expects the following package contents:
+  This package will need to be created and copied into `ansible\local_files`. This package will be unpacked on your VM in `app/assets/images/vtul/carousel/`.
+  The following is an example of the carousel package contents:
  
   ```
   Susana_Torre/Ms1990_016_F026_014_Garvey_Dr_007_25p.jpg
@@ -68,7 +68,7 @@ To modify your homepage carousel images, do the following:
 
   If you forget to unpack these images, the carousel should still function, but without any of the images showing.
 
-* Modify `config/initializers/carousel_config.rb` to set the order of the images to be displayed
+* Modify `config/initializers/carousel_config.rb` to set the order of the images to be displayed. For example:
 
   ```
   Rails.application.configure do
@@ -90,7 +90,7 @@ To modify your homepage carousel images, do the following:
   end
   ```
 
-* Modify `config/locales/en.yml` to set the image text
+* Modify `config/locales/en.yml` to set the image text. For example:
 
   ```
   en:
