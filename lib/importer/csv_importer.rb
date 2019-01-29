@@ -18,6 +18,11 @@ module Importer
       files_dir_array = Dir.glob(files_directory + "/**/Access")
       parser.each do |attributes|
         attrs = attributes.merge(deposit_attributes).merge(visibility_attributes)
+
+        if ! attrs[:identifier].present?
+          next
+        end
+
         obj_id = attrs[:identifier].first
         obj_file_dir = files_dir_array.detect { |f_d| f_d.end_with?(obj_id + "/Access") }
         parent_collection_id = collection_id

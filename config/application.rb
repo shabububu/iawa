@@ -42,6 +42,8 @@ module Iawa
       Hyrax::CollectionPresenter.prepend Hyrax::CollectionPresenterOverride
       Hyrax::FileSetDerivativesService.prepend Hyrax::FileSetDerivativesServiceOverride
 
+      CreateDerivativesJob.prepend CreateDerivativesJobOverride
+
       IIIFManifest::ManifestBuilder::CanvasBuilder.prepend IIIFManifest::ManifestBuilder::CanvasBuilderOverride
     end
   end

@@ -34,8 +34,8 @@ RSpec.describe Importer::CSVParser do
 
   describe '#headers' do
     let(:file) { "#{fixture_path}/importer/manifest_samples/sample.csv" }
-    it {
-            expect(subject.headers).to eq(%w(Identifier Title Circa Start\ Date End\ Date Description Subject
+    it { 
+      expect(subject.headers).to eq(%w(Identifier Title Circa Start\ Date End\ Date Description Subject
         Type Medium Format Creator Source Is\ Part\ Of Language Coverage Tags Related\ URL Contributor))
     }
   end

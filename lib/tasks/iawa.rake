@@ -72,15 +72,14 @@ namespace :iawa do
 
   desc 'Establish initial controlled vocabularies for medium, tags, resource type fields'
   task add_controlled_vocabs: :environment do
-    medium_names = ["Blueprints", "Charcoal", "Color pencil", "Computer-aided design",
-		    "Diazotypes (copies)", "Graphite", "Ink", "Linocuts (prints)",
-                    "Marker pen", "Negatives (photographs)", "Pastels (Visual works)",
-                    "Photographic Print - Black and White", "Photographic print - Color",
-		    "Printed ink", "Slides (photographs)", "Stats (copies)", "Watercolors",
-                    "Woodcut (prints)"]
+    medium_names = ["Blueprints", "Charcoal", "Colored pencil", "Computer-aided design",
+                    "Diazotypes (copies)", "Etchings (prints)", "Graphite", "Ink",
+                    "Linocuts (prints)", "Marker pen", "Negatives (photographs)",
+                    "Pastels (Visual works)", "Photographic Print - Black and White",
+                    "Photographic print - Color", "Printed ink", "Slides (photographs)",
+                    "Stats (copies)", "Watercolors", "Woodcut (prints)"]
     medium_names.each do |name|
-      ControlledVocab.find_or_create_by(name: name) do |c_v|
-        c_v.field = 'medium_sim'
+      ControlledVocab.where(name: name, field: 'medium_sim').first_or_create do |c_v|
         c_v.image_filename = name.downcase.gsub(/[\W_]/,'') + '.jpg'
       end
     end
@@ -88,30 +87,31 @@ namespace :iawa do
                   "As-built drawings", "Axonometric projections (images)", "Clippings",
                   "Computer drawings", "Conceptual drawings", "Contact sheets", "Correspondence",
                   "Curriculum Vitae", "Detail drawings (drawings)", "Detail studies",
-                  "Digital 3D model", "Digital renderings", "Documents", "Elevations (orthographic projections)",
-                  "Ephemera", "Floor plans (orthographic projections)", "Handbooks and manuals",
-                  "Interior design", "Letters", "Maps", "Newsletters", "Notebooks", "Pamphlets",
-                  "Perspective views (images)", "Photographs", "Postcards", "Posters",
-                  "Presentation drawings (proposals)", "Scale models", "Schedules (architectural records)",
-                  "Sections (orthographic projections)", "Site plans", "Sketchbooks", "Sketches", "Travel sketches"]
+                  "Digital 3D model", "Digital renderings", "Documents", "Electrical drawings",
+                  "Electrical plans", "Elevations (orthographic projections)",
+                  "Ephemera", "Floor plans (orthographic projections)", "Foundation plans",
+                  "Framing plans", "Handbooks and manuals", "Interior design", "Letters", "Maps",
+                  "Mechanical drawings (building systems drawings)", "Newsletters", "Notebooks",
+                  "Pamphlets", "Perspective views (images)", "Photographs", "Postcards", "Posters",
+                  "Presentation drawings (proposals)", "Reflected ceiling plans", "Roofs",
+                  "Scale models", "Schedules (architectural records)", "Sections (orthographic projections)",
+                  "Site plans", "Sketchbooks", "Sketches", "Travel sketches"]
     type_names.each do |name|
-      ControlledVocab.find_or_create_by(name: name) do |c_v|
-        c_v.field = 'resource_type_sim'
+      ControlledVocab.where(name: name, field: 'resource_type_sim').first_or_create do |c_v|
         c_v.image_filename = name.downcase.gsub(/[\W_]/,'') + '.jpg'
       end
     end
     tags_names = ["11 to 20 stories", "3 to 5 stories", "6 to 10 stories", "Associations and committees",
-                     "Awards", "Biographical information", "Commercial and Office", "Educational and research",
-                     "Faculty papers", "Healthcare", "Historic preservation", "Industrial", "Interior Design",
-                     "Landscape Architecture", "Office records", "Personal papers", "Portrait",
-                     "Professional papers", "Project records", "Public buildings (governmental buildings)",
-                     "Reference files", "Religious building spaces", "Renovations", "Residential",
-                     "Residential-Housing development", "Residential-Multi-family", "Residential-Single-family",
-                     "Single-family", "Single-story", "Student work", "Travel", "Two-story", "Urban Design"]
+                  "Awards", "Biographical information", "Commercial and office", "Educational and research",
+                  "Exhibitions (events)", "Faculty papers", "Galleries (display spaces)", "Healthcare",
+                  "Historic preservation", "Industrial", "Interior design", "Landscape architecture",
+                  "Office records", "Personal papers", "Portrait", "Professional papers", "Project records",
+                  "Public buildings (governmental buildings)", "Recreation buildings", "Reference files",
+                  "Religious building spaces", "Renovations", "Residential", "Residential-housing development",
+                  "Residential-multi-family", "Residential-single-family", "Single-story", "Sketching",
+                  "Student work", "Travel", "Two-story", "Urban design"]
     tags_names.each do |name|
-      ControlledVocab.find_or_create_by(name: name) do |c_v|
-        c_v.field = 'tags_sim'
-      end
+      ControlledVocab.where(name: name, field: 'tags_sim').first_or_create
     end
   end
 

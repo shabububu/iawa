@@ -51,8 +51,10 @@ config/application.yml
 # Ignore photos for carousel, owned/managed by UniRel.
 /app/assets/images/carousel
 
-
 /node_modules
 /yarn-error.log
 
 .byebug_history
+
+# Derivatives Directory
+/derivatives
