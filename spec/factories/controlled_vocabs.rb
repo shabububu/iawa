@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :controlled_vocab do
-    field "MyString"
-    name "MyString"
-    image_filename "MyString"
+    field { "MyString" }
+    name { "MyString" }
+    image_filename { "MyString" }
   end
 end

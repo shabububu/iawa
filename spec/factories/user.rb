@@ -1,12 +1,12 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    provider 'cas'
+    provider { 'cas' }
     sequence(:uid) { |n| "test_user#{n}" }
     sequence(:email) { |n| "test_user#{n}@example.com" }
 
     factory :default_user do
-      uid 'default_user'
-      email 'default@example.com'
+      uid { 'default_user' }
+      email { 'default@example.com' }
     end
 
     factory :admin do
