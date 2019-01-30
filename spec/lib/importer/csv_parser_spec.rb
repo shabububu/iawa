@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rails_helper'
 require 'importer'
 
@@ -26,7 +27,7 @@ RSpec.describe Importer::CSVParser do
       expect(first_record[:location]).to eq ["Ms1990-025, Box 1, Folder 1"]
       expect(first_record[:tags]).to eq ["Industrial", "Commercial and office"]
       expect(first_record.keys).to match_array [:identifier, :title, :date_created, :date, :description, :subject,
-                                                :resource_type, :medium, :format, :creator, :source, :location, 
+                                                :resource_type, :medium, :format, :creator, :source, :location,
                                                 :language, :coverage, :tags]
     end
   end
