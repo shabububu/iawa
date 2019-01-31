@@ -18,7 +18,6 @@ RSpec.describe BatchImport do
         allow(File).to receive(:read).with(described_class::CONFIG_FILE) { config_file_contents }
       end
       it 'uses values from the config file' do
-        skip #TODO
         expect(described_class.basepath).to eq(basepath)
       end
     end

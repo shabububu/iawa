@@ -16,9 +16,8 @@ class BatchImport
 
   def self.basepath
     if File.file?(CONFIG_FILE)
-      if (config = YAML.load(File.read(CONFIG_FILE))) && config.is_a?(Hash)
-        basepath = config[:basepath]
-      end
+      config = YAML.load(ERB.new(File.read(CONFIG_FILE)).result).deep_symbolize_keys
+      basepath = config[:basepath]
     end
     basepath ||= File.join(Rails.root, 'tmp', 'imports')
   end
