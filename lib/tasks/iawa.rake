@@ -151,4 +151,15 @@ namespace :iawa do
     end
   end
 
+  # usage: iawa:reindex_collections
+  desc 'Reindex Collections'
+  task reindex_collections: :environment do
+    # NOTE: This is a less than ideal work-around for LIBTD-1692,
+    #       where the collection size may not be updated correctly
+    #       after batch imports.
+    #       Running this command periodically will update existing
+    #       collections, but will need to be run after future batch
+    #       imports.
+    Collection.all.each { |collection| collection.update_index }
+  end
 end
